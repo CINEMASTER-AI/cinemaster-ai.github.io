@@ -1,0 +1,31 @@
+{
+  "name": "CineMaster AI",
+  "version": "3.7.1",
+  "label": "v3.7.1",
+  "date": "2026-11-19",
+  "title": "창을 다시 띄울 때 렉 없애기와 Resolve 와 같은 Log 영상 레벨",
+  "notes": [
+    "작업 표시줄에서 창을 다시 띄울 때 화면이 한동안 검게 남던 문제를 고쳤습니다. 이제 누르는 즉시 화면이 보입니다.",
+    "창을 최소화해 두면 영상 프레임 처리와 Resolve 상태 확인을 쉬어 GPU 와 CPU 를 덜 씁니다.",
+    "보기 메뉴의 'Log 영상 코드값 그대로' 를 켜면, Resolve 를 거치지 않고 연 Log 영상도 Resolve 에서 LUT 을 건 결과와 같은 밝기로 보입니다. 기본값은 예전과 같습니다.",
+    "Resolve 왕복 검증이 원본 크기에서 계산해, 질감이 많은 장면에서도 정확하게 판정합니다.",
+    "프로젝트를 내보내면 미디어 풀 목록도 함께 담기고, 가져오면 그대로 이어집니다. 프로젝트를 지우면 그 프로젝트의 미디어 풀 목록도 정리됩니다.",
+    "사용설명서를 v3.7.1 로 새로 만들었습니다 (메뉴바 · 프로젝트 · 프리뷰 해상도 · Log 영상 레벨)."
+  ],
+  "page": "https://cinemaster-ai.github.io/#download",
+  "changelog": "https://cinemaster-ai.github.io/#updates",
+  "installer": {
+    "name": "CineMaster_AI_Setup_v3.7.1.exe",
+    "url": "https://github.com/CINEMASTER-AI/cinemaster-ai.github.io/releases/download/v3.7.1/CineMaster_AI_Setup_v3.7.1.exe",
+    "size": "174.7 MB",
+    "size_bytes": 183164136,
+    "sha256": "1fe28cef202b86e9d5d25cca1223d50686853c3d47d32ce966a1fdedb5aab920"
+  },
+  "portable": {
+    "name": "CineMaster_AI_Portable_v3.7.1_Windows.zip",
+    "url": "https://github.com/CINEMASTER-AI/cinemaster-ai.github.io/releases/download/v3.7.1/CineMaster_AI_Portable_v3.7.1_Windows.zip",
+    "size": "238.7 MB",
+    "size_bytes": 250264159,
+    "sha256": "e37bdf4ea23fabf05625a0509c0abf302f7efaa6463eb4a817b99072dba668cd"
+  }
+}
