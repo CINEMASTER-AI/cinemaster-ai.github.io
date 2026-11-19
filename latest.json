@@ -1,0 +1,30 @@
+{
+  "name": "CineMaster AI",
+  "version": "3.8.1",
+  "label": "v3.8.1",
+  "date": "2026-11-19",
+  "title": "새 로고 · 더 잘 보이는 글자 · 가벼워진 화면",
+  "notes": [
+    "로고를 새로 만들었습니다. 알약 세 개가 비스듬히 쌓여 틸에서 오렌지로 넘어가는 모양이며, 창 · 작업 표시줄 · 바탕화면 아이콘이 바뀝니다.",
+    "글자가 더 잘 보입니다. 숫자와 라벨에 쓰던 가는 고정폭 글꼴을 본문 글꼴로 바꾸고, 굵기와 작은 글자 크기를 한 단계씩 올리고, 흐린 글자색을 밝혔습니다.",
+    "그래프 크기를 마우스 휠로 바꿀 수 있습니다. FILM LAB 의 D-LogE 곡선과 HDR Zones 의 존 히스토그램 위에서 휠을 굴리면 줄고 늘어나며, 더블클릭하면 원래 크기로 돌아갑니다.",
+    "화면이 가벼워졌습니다. 값을 바꿀 때마다 화면 전체가 다시 그려지던 것을 없애고, 주기적으로 다시 그리던 그래프는 바뀐 때만 그립니다.",
+    "내보내는 LUT 과 수식은 그대로입니다. 예전에 저장한 룩 파일도 그대로 열립니다."
+  ],
+  "page": "https://cinemaster-ai.github.io/#download",
+  "changelog": "https://cinemaster-ai.github.io/#updates",
+  "installer": {
+    "name": "CineMaster_AI_Setup_v3.8.1.exe",
+    "url": "https://github.com/CINEMASTER-AI/cinemaster-ai.github.io/releases/download/v3.8.1/CineMaster_AI_Setup_v3.8.1.exe",
+    "size": "179.1 MB",
+    "size_bytes": 187748013,
+    "sha256": "5a5a9808e76fedeef464afd5fd0cc107ec2c54fe689a98f0d04e9e70cae5bd99"
+  },
+  "portable": {
+    "name": "CineMaster_AI_Portable_v3.8.1_Windows.zip",
+    "url": "https://github.com/CINEMASTER-AI/cinemaster-ai.github.io/releases/download/v3.8.1/CineMaster_AI_Portable_v3.8.1_Windows.zip",
+    "size": "243.2 MB",
+    "size_bytes": 255025364,
+    "sha256": "f1f780a14ec90c323dcdb68be737df462c575f6c403b83c5499228fdf69e53b6"
+  }
+}
