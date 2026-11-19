@@ -1,0 +1,28 @@
+{
+  "name": "CineMaster AI",
+  "version": "3.8.4",
+  "label": "v3.8.4",
+  "date": "2026-11-20",
+  "title": "DaVinci Resolve 의 DCTL 오류 창 해결",
+  "notes": [
+    "DaVinci Resolve 가 LUT 목록에서 Spatial_Look.dctl 을 읽을 때마다 'Error Processing DaVinci CTL' 창을 띄우던 것을 고쳤습니다.",
+    "이미 내보낸 Spatial_Look.dctl 은 새 버전에서 다시 내보내면 오류가 사라집니다. 색을 담은 .cube 파일은 그대로 쓰시면 됩니다.",
+    "화면 · 수식 · 내보내는 LUT 은 그대로입니다."
+  ],
+  "page": "https://cinemaster-ai.github.io/#download",
+  "changelog": "https://cinemaster-ai.github.io/#updates",
+  "installer": {
+    "name": "CineMaster_AI_Setup_v3.8.4.exe",
+    "url": "https://github.com/CINEMASTER-AI/cinemaster-ai.github.io/releases/download/v3.8.4/CineMaster_AI_Setup_v3.8.4.exe",
+    "size": "179.1 MB",
+    "size_bytes": 187750672,
+    "sha256": "6ae55842847ba34196c2d44a437c6880a6f38aedc4499c4ae6829eddd67f16ec"
+  },
+  "portable": {
+    "name": "CineMaster_AI_Portable_v3.8.4_Windows.zip",
+    "url": "https://github.com/CINEMASTER-AI/cinemaster-ai.github.io/releases/download/v3.8.4/CineMaster_AI_Portable_v3.8.4_Windows.zip",
+    "size": "243.2 MB",
+    "size_bytes": 255029503,
+    "sha256": "e44273a5ba2db6962269b4d74c75cbfd31d9299dfb7b211a175324fec6f93213"
+  }
+}
