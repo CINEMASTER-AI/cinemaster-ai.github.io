@@ -1,0 +1,28 @@
+{
+  "name": "CineMaster AI",
+  "version": "3.7.2",
+  "label": "v3.7.2",
+  "date": "2026-11-19",
+  "title": "사용설명서를 처음부터 다시 만들었습니다",
+  "notes": [
+    "사용설명서를 버전별 추가 설명이 아닌 프로그램 전체 설명서로 새로 썼습니다. 모든 그림을 최신 화면으로 다시 찍고, 그림 위 번호와 짧은 설명으로 정리했습니다.",
+    "헤더의 변경 기록(시계 버튼) 창이 아래 화면에 가려 일부만 보이던 문제를 고쳤습니다.",
+    "DELIVER 페이지의 .CUBE 저장 · Resolve 에 설치 버튼이 좁은 창에서 잘려 보이지 않던 문제를 고쳤습니다. 이제 저장 버튼이 오른쪽에 따로 한 줄로 모여 있습니다."
+  ],
+  "page": "https://cinemaster-ai.github.io/#download",
+  "changelog": "https://cinemaster-ai.github.io/#updates",
+  "installer": {
+    "name": "CineMaster_AI_Setup_v3.7.2.exe",
+    "url": "https://github.com/CINEMASTER-AI/cinemaster-ai.github.io/releases/download/v3.7.2/CineMaster_AI_Setup_v3.7.2.exe",
+    "size": "173.1 MB",
+    "size_bytes": 181554482,
+    "sha256": "41ccf08601cde12e72682324c9a8ea213a2fe788218888abc577781a6c6e8e9f"
+  },
+  "portable": {
+    "name": "CineMaster_AI_Portable_v3.7.2_Windows.zip",
+    "url": "https://github.com/CINEMASTER-AI/cinemaster-ai.github.io/releases/download/v3.7.2/CineMaster_AI_Portable_v3.7.2_Windows.zip",
+    "size": "237.1 MB",
+    "size_bytes": 248625768,
+    "sha256": "9a6a4a58a07d8c9d91f9d6b03b93721a87fa4b35e6546df810806861de07151f"
+  }
+}
