@@ -1,0 +1,29 @@
+{
+  "name": "CineMaster AI",
+  "version": "3.8.2",
+  "label": "v3.8.2",
+  "date": "2026-11-20",
+  "title": "처음 누를 때 멈추던 것 해결",
+  "notes": [
+    "앱을 켠 직후 2초쯤 화면이 멈추던 것을 없앴습니다. 색 계산 준비를 뒤에서 하므로, 켜자마자 눌러도 바로 반응합니다.",
+    "샘플 룩 · 3D Cube · 스포이드 보정 · LUT 굽기를 처음 쓸 때 1초 넘게 멈추던 것을 없앴습니다. 필요한 준비를 화면이 뜬 직후 미리 해 둡니다.",
+    "샘플 룩 창이 더 빨리 열립니다. 미리보기 16칸을 한꺼번에 만들지 않고 차례로 채웁니다.",
+    "내보내는 LUT 과 수식은 그대로입니다. 예전에 저장한 룩 파일도 그대로 열립니다."
+  ],
+  "page": "https://cinemaster-ai.github.io/#download",
+  "changelog": "https://cinemaster-ai.github.io/#updates",
+  "installer": {
+    "name": "CineMaster_AI_Setup_v3.8.2.exe",
+    "url": "https://github.com/CINEMASTER-AI/cinemaster-ai.github.io/releases/download/v3.8.2/CineMaster_AI_Setup_v3.8.2.exe",
+    "size": "179.0 MB",
+    "size_bytes": 187746426,
+    "sha256": "fba4964f1b5f573a28b78d5e6b4cb473cf8029928632478fe137a38fba843653"
+  },
+  "portable": {
+    "name": "CineMaster_AI_Portable_v3.8.2_Windows.zip",
+    "url": "https://github.com/CINEMASTER-AI/cinemaster-ai.github.io/releases/download/v3.8.2/CineMaster_AI_Portable_v3.8.2_Windows.zip",
+    "size": "243.2 MB",
+    "size_bytes": 255025652,
+    "sha256": "59ef72aed6a966cc6e1d7f1cba628fdb35481a774bc12d08806d54e0b7cbbae7"
+  }
+}
