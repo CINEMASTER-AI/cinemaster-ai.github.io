@@ -1,0 +1,29 @@
+{
+  "name": "CineMaster AI",
+  "version": "3.8.3",
+  "label": "v3.8.3",
+  "date": "2026-11-20",
+  "title": "DaVinci Resolve 가 꺼져 있을 때 창이 멈추던 것 해결",
+  "notes": [
+    "DaVinci Resolve 를 켜지 않고 쓸 때 어디를 누르든 1~3초씩 늦게 반응하던 것을 고쳤습니다. 앱이 Resolve 연결을 확인할 때마다 창이 몇 초씩 멈추던 것이 원인이었습니다.",
+    "Resolve 가 꺼져 있으면 연결을 시도하지 않고, 켜면 예전처럼 자동으로 연결합니다.",
+    "Resolve 는 켜져 있는데 연결이 안 될 때(외부 스크립팅 꺼짐 등)는 다시 시도하는 간격을 늘립니다. 연동 설정 도우미를 열면 바로 다시 시도합니다.",
+    "화면 · 수식 · 내보내는 LUT 은 그대로입니다."
+  ],
+  "page": "https://cinemaster-ai.github.io/#download",
+  "changelog": "https://cinemaster-ai.github.io/#updates",
+  "installer": {
+    "name": "CineMaster_AI_Setup_v3.8.3.exe",
+    "url": "https://github.com/CINEMASTER-AI/cinemaster-ai.github.io/releases/download/v3.8.3/CineMaster_AI_Setup_v3.8.3.exe",
+    "size": "179.0 MB",
+    "size_bytes": 187743574,
+    "sha256": "8cd6dc78f3d7f7c49d68304c61e3c7e3b4ee889b4955f291cb7c583a6ae64321"
+  },
+  "portable": {
+    "name": "CineMaster_AI_Portable_v3.8.3_Windows.zip",
+    "url": "https://github.com/CINEMASTER-AI/cinemaster-ai.github.io/releases/download/v3.8.3/CineMaster_AI_Portable_v3.8.3_Windows.zip",
+    "size": "243.2 MB",
+    "size_bytes": 255027928,
+    "sha256": "d8adef3ed74f61d483565b70e6f009a859737cba28ea67e137bc6b41a06b3f3a"
+  }
+}
