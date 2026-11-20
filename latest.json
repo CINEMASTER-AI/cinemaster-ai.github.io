@@ -1,0 +1,30 @@
+{
+  "name": "CineMaster AI",
+  "version": "3.8.7",
+  "label": "v3.8.7",
+  "date": "2026-11-20",
+  "title": "피드백 칸 · 사용 통계 동의 · 개인정보 처리 안내",
+  "notes": [
+    "홈페이지 [더 보기] 에 피드백 칸을 만들었습니다. 로그인 없이 버그 · 기능 제안 · 질문을 바로 보낼 수 있습니다.",
+    "프로그램을 처음 열 때 사용 통계와 오류를 보낼지 물어봅니다. 동의한 경우에만 프로그램 버전, 연 페이지 이름, 오류 문구를 익명으로 보냅니다. 영상 · 파일 이름 · 룩 · LUT 은 보내지 않습니다.",
+    "동의는 도움말 메뉴의 [사용 통계 · 오류 보내기] 에서 언제든 바꿀 수 있습니다. 같은 메뉴에 [피드백 보내기] 와 [개인정보 처리 안내] 를 넣었습니다.",
+    "홈페이지에 개인정보 처리 안내를 올렸습니다. 모으지 않는 것, 동의한 경우에만 모으는 것, 보관하는 곳을 적었습니다.",
+    "수식 · 내보내는 LUT · 저장한 룩 파일은 그대로입니다."
+  ],
+  "page": "https://cinemaster-ai.github.io/#download",
+  "changelog": "https://cinemaster-ai.github.io/#updates",
+  "installer": {
+    "name": "CineMaster_AI_Setup_v3.8.7.exe",
+    "url": "https://github.com/CINEMASTER-AI/cinemaster-ai.github.io/releases/download/v3.8.7/CineMaster_AI_Setup_v3.8.7.exe",
+    "size": "183.7 MB",
+    "size_bytes": 192646005,
+    "sha256": "7f73e503f9ff4ec4977e0815a4b11c7b061126eb429c9ae80686f09aca26ddfe"
+  },
+  "portable": {
+    "name": "CineMaster_AI_Portable_v3.8.7_Windows.zip",
+    "url": "https://github.com/CINEMASTER-AI/cinemaster-ai.github.io/releases/download/v3.8.7/CineMaster_AI_Portable_v3.8.7_Windows.zip",
+    "size": "248.5 MB",
+    "size_bytes": 260565732,
+    "sha256": "384664958952fbb01497a6e4e6ca28d532a6b3d05cacaa7d75efccee8e21f736"
+  }
+}

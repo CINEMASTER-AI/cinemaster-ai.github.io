@@ -1,0 +1,194 @@
+{
+  "in": [
+    {
+      "key": "arri_logc3",
+      "file": "img/cs/in_arri_logc3.jpg"
+    },
+    {
+      "key": "arri_logc4",
+      "file": "img/cs/in_arri_logc4.jpg"
+    },
+    {
+      "key": "red_log3g10_rwg",
+      "file": "img/cs/in_red_log3g10_rwg.jpg"
+    },
+    {
+      "key": "sony_slog3_sgamut3cine",
+      "file": "img/cs/in_sony_slog3_sgamut3cine.jpg"
+    },
+    {
+      "key": "sony_slog3_sgamut3",
+      "file": "img/cs/in_sony_slog3_sgamut3.jpg"
+    },
+    {
+      "key": "bmd_film_gen5",
+      "file": "img/cs/in_bmd_film_gen5.jpg"
+    },
+    {
+      "key": "canon_clog2_cgamut",
+      "file": "img/cs/in_canon_clog2_cgamut.jpg"
+    },
+    {
+      "key": "canon_clog3_cgamut",
+      "file": "img/cs/in_canon_clog3_cgamut.jpg"
+    },
+    {
+      "key": "apple_log",
+      "file": "img/cs/in_apple_log.jpg"
+    }
+  ],
+  "work": [
+    {
+      "key": "davinci_wg_intermediate",
+      "file": "img/cs/work_davinci_wg_intermediate.jpg"
+    },
+    {
+      "key": "acescct",
+      "file": "img/cs/work_acescct.jpg"
+    }
+  ],
+  "gamut": [
+    {
+      "key": "rec709",
+      "file": "img/cs/gamut_rec709.jpg"
+    },
+    {
+      "key": "srgb",
+      "file": "img/cs/gamut_srgb.jpg"
+    },
+    {
+      "key": "p3_d65",
+      "file": "img/cs/gamut_p3_d65.jpg"
+    },
+    {
+      "key": "dci_p3",
+      "file": "img/cs/gamut_dci_p3.jpg"
+    },
+    {
+      "key": "rec2020",
+      "file": "img/cs/gamut_rec2020.jpg"
+    },
+    {
+      "key": "davinci_wide_gamut",
+      "file": "img/cs/gamut_davinci_wide_gamut.jpg"
+    },
+    {
+      "key": "aces_ap1",
+      "file": "img/cs/gamut_aces_ap1.jpg"
+    }
+  ],
+  "gamma": [
+    {
+      "key": "gamma_24",
+      "file": "img/cs/gamma_gamma_24.jpg"
+    },
+    {
+      "key": "gamma_22",
+      "file": "img/cs/gamma_gamma_22.jpg"
+    },
+    {
+      "key": "srgb",
+      "file": "img/cs/gamma_srgb.jpg"
+    },
+    {
+      "key": "rec709_a",
+      "file": "img/cs/gamma_rec709_a.jpg"
+    },
+    {
+      "key": "gamma_26",
+      "file": "img/cs/gamma_gamma_26.jpg"
+    },
+    {
+      "key": "rec709_scene",
+      "file": "img/cs/gamma_rec709_scene.jpg"
+    },
+    {
+      "key": "st2084_pq_1000",
+      "file": "img/cs/gamma_st2084_pq_1000.jpg"
+    },
+    {
+      "key": "st2084_pq_2000",
+      "file": "img/cs/gamma_st2084_pq_2000.jpg"
+    },
+    {
+      "key": "st2084_pq_4000",
+      "file": "img/cs/gamma_st2084_pq_4000.jpg"
+    },
+    {
+      "key": "hlg",
+      "file": "img/cs/gamma_hlg.jpg"
+    },
+    {
+      "key": "cineon_log",
+      "file": "img/cs/gamma_cineon_log.jpg"
+    }
+  ],
+  "neg": [
+    {
+      "key": "VISION3_50D",
+      "file": "img/cs/neg_VISION3_50D.jpg"
+    },
+    {
+      "key": "VISION3_200T",
+      "file": "img/cs/neg_VISION3_200T.jpg"
+    },
+    {
+      "key": "VISION3_250D",
+      "file": "img/cs/neg_VISION3_250D.jpg"
+    },
+    {
+      "key": "VISION3_500T",
+      "file": "img/cs/neg_VISION3_500T.jpg"
+    },
+    {
+      "key": "ETERNA_500T",
+      "file": "img/cs/neg_ETERNA_500T.jpg"
+    },
+    {
+      "key": "DOUBLE_X_5222",
+      "file": "img/cs/neg_DOUBLE_X_5222.jpg"
+    },
+    {
+      "key": "KODACHROME_64",
+      "file": "img/cs/neg_KODACHROME_64.jpg"
+    },
+    {
+      "key": "VELVIA_50",
+      "file": "img/cs/neg_VELVIA_50.jpg"
+    },
+    {
+      "key": "CINESTILL_800T",
+      "file": "img/cs/neg_CINESTILL_800T.jpg"
+    },
+    {
+      "key": "PORTRA_400",
+      "file": "img/cs/neg_PORTRA_400.jpg"
+    }
+  ],
+  "print": [
+    {
+      "key": "KODAK_2383_D55",
+      "file": "img/cs/print_KODAK_2383_D55.jpg"
+    },
+    {
+      "key": "KODAK_2383_D60",
+      "file": "img/cs/print_KODAK_2383_D60.jpg"
+    },
+    {
+      "key": "KODAK_2383_D65",
+      "file": "img/cs/print_KODAK_2383_D65.jpg"
+    },
+    {
+      "key": "FUJI_3513_D60",
+      "file": "img/cs/print_FUJI_3513_D60.jpg"
+    },
+    {
+      "key": "KODAK_2393",
+      "file": "img/cs/print_KODAK_2393.jpg"
+    },
+    {
+      "key": "ENDURA_PAPER",
+      "file": "img/cs/print_ENDURA_PAPER.jpg"
+    }
+  ]
+}
