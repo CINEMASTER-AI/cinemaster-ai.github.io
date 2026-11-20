@@ -1,0 +1,32 @@
+{
+  "name": "CineMaster AI",
+  "version": "3.8.5",
+  "label": "v3.8.5",
+  "date": "2026-11-20",
+  "title": "클립이 많은 타임라인 수집 · 새 사용설명서",
+  "notes": [
+    "CONFORM 의 [타임라인 전체 수집] 이 클립이 많은 타임라인에서 중간에 멈추던 것을 고쳤습니다. 60개까지만 읽던 제한을 1000개로 늘렸습니다.",
+    "수집하는 동안 '42 / 150' 처럼 진행 상황과 지금 읽는 클립 이름이 보이고, [중지] 를 누르면 그때까지 읽은 클립만 가져옵니다.",
+    "같은 원본에서 여러 번 잘라 쓴 클립도 컷마다 제 대표 프레임으로 샷 밸런싱합니다. 읽지 못한 클립은 건너뛰고 나머지를 계속 읽습니다.",
+    "수집 중에는 Resolve 따라가기를 잠시 쉬어, 화면이 클립을 따라 계속 바뀌지 않습니다. 대표 프레임을 줄여 담아 메모리도 훨씬 덜 씁니다.",
+    "사용설명서를 홈페이지와 같은 디자인으로 새로 만들고, 그림과 설명을 모두 지금 화면에 맞췄습니다.",
+    "홈페이지: 머리줄 로고를 누르면 늘 첫 화면 맨 위에서 다시 열리고, 바닥글의 메일 주소는 눌리지 않는 글자로 바꿨습니다.",
+    "수식 · 내보내는 LUT 은 그대로입니다."
+  ],
+  "page": "https://cinemaster-ai.github.io/#download",
+  "changelog": "https://cinemaster-ai.github.io/#updates",
+  "installer": {
+    "name": "CineMaster_AI_Setup_v3.8.5.exe",
+    "url": "https://github.com/CINEMASTER-AI/cinemaster-ai.github.io/releases/download/v3.8.5/CineMaster_AI_Setup_v3.8.5.exe",
+    "size": "178.9 MB",
+    "size_bytes": 187614905,
+    "sha256": "303178d97d8f8c9461a0cd8945e7effcd8c16a9e76114aa8f629eb3140c30fc0"
+  },
+  "portable": {
+    "name": "CineMaster_AI_Portable_v3.8.5_Windows.zip",
+    "url": "https://github.com/CINEMASTER-AI/cinemaster-ai.github.io/releases/download/v3.8.5/CineMaster_AI_Portable_v3.8.5_Windows.zip",
+    "size": "243.3 MB",
+    "size_bytes": 255078011,
+    "sha256": "0a875801bdf042d7e2474fbe43cd9d9bcf2b2d99d869298796313857c3dba66e"
+  }
+}
