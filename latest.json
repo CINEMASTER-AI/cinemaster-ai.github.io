@@ -1,0 +1,30 @@
+{
+  "name": "CineMaster AI",
+  "version": "3.8.8",
+  "label": "v3.8.8",
+  "date": "2026-11-20",
+  "title": "잘리던 안내 글자 · 피드백 답장",
+  "notes": [
+    "Resolve 연동 창의 연결 안내처럼 긴 경로가 들어 있는 글이 오른쪽에서 잘리던 것을 고쳤습니다. 칸 안에서 줄을 바꿔 끝까지 보입니다.",
+    "홈페이지 피드백 칸: 버그 · 질문일 때 답장 받을 이메일을 적어 달라고 안내합니다.",
+    "자주 묻는 질문 아래에 피드백 칸 안내를 넣었습니다. 자주 나오는 질문은 이 목록에 답을 올립니다.",
+    "링크를 공유할 때 보이는 미리보기를 심볼과 로고로 바꾸고 이름에서 버전을 뺐습니다.",
+    "수식 · 내보내는 LUT · 저장한 룩 파일은 그대로입니다."
+  ],
+  "page": "https://cinemaster-ai.github.io/#download",
+  "changelog": "https://cinemaster-ai.github.io/#updates",
+  "installer": {
+    "name": "CineMaster_AI_Setup_v3.8.8.exe",
+    "url": "https://github.com/CINEMASTER-AI/cinemaster-ai.github.io/releases/download/v3.8.8/CineMaster_AI_Setup_v3.8.8.exe",
+    "size": "183.7 MB",
+    "size_bytes": 192642557,
+    "sha256": "07cfbc69af716d45c5be034aa2a0c29df1b374c91a2591392375474ae1dda8db"
+  },
+  "portable": {
+    "name": "CineMaster_AI_Portable_v3.8.8_Windows.zip",
+    "url": "https://github.com/CINEMASTER-AI/cinemaster-ai.github.io/releases/download/v3.8.8/CineMaster_AI_Portable_v3.8.8_Windows.zip",
+    "size": "248.5 MB",
+    "size_bytes": 260566021,
+    "sha256": "27fe93760d749fd25efa39b76a300920b06061a96be7cac9133a8a080a75a885"
+  }
+}
