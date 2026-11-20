@@ -1,0 +1,30 @@
+{
+  "name": "CineMaster AI",
+  "version": "3.8.6",
+  "label": "v3.8.6",
+  "date": "2026-11-20",
+  "title": "탭과 Master 줄을 끌어서 옮기기 · 설치 후 아이콘",
+  "notes": [
+    "COLOR 의 팔레트 탭과 각 페이지 작업 칸의 탭을 마우스로 끌어 순서를 바꿀 수 있습니다. 숫자 키 1~7 은 화면에 보이는 순서를 따릅니다.",
+    "Master 패널은 줄의 이름을 잡고 위아래로 끌면 묶음 안에서 순서가 바뀝니다. 이름이 아닌 곳을 좌우로 끌면 예전처럼 값이 바뀝니다.",
+    "키보드로는 탭에 초점을 두고 Alt + 방향키로 옮깁니다. 바꾼 순서는 [레이아웃 초기화] 로 되돌립니다.",
+    "새 버전을 덮어 설치한 뒤에도 바탕화면 · 시작 메뉴 아이콘이 예전 로고로 남던 것을 고쳤습니다.",
+    "수식 · 내보내는 LUT · 저장한 룩 파일은 그대로입니다."
+  ],
+  "page": "https://cinemaster-ai.github.io/#download",
+  "changelog": "https://cinemaster-ai.github.io/#updates",
+  "installer": {
+    "name": "CineMaster_AI_Setup_v3.8.6.exe",
+    "url": "https://github.com/CINEMASTER-AI/cinemaster-ai.github.io/releases/download/v3.8.6/CineMaster_AI_Setup_v3.8.6.exe",
+    "size": "183.7 MB",
+    "size_bytes": 192634984,
+    "sha256": "f0ec01c01f0e4a2de8c3ba7a02b0a535ddc192f24e3ab47e4cf2b9b485b3d7a2"
+  },
+  "portable": {
+    "name": "CineMaster_AI_Portable_v3.8.6_Windows.zip",
+    "url": "https://github.com/CINEMASTER-AI/cinemaster-ai.github.io/releases/download/v3.8.6/CineMaster_AI_Portable_v3.8.6_Windows.zip",
+    "size": "248.5 MB",
+    "size_bytes": 260559042,
+    "sha256": "dd54cbf3deabf4376c2b873394188e969957e1471e1f8d3a645207301155e38c"
+  }
+}

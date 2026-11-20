@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CineMaster AI — 촬영한 색을 끝까지. 단 하나의 워크플로우</title>
+  <meta name="description" content="카메라 Log 영상의 룩을 만들고, 필름 질감을 입히고, 납품 검사를 거쳐 .cube LUT 과 DaVinci Resolve 노드로 가져가는 Windows 프로그램입니다. 설치 없이 웹에서도 써 볼 수 있습니다.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#060f12">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CineMaster AI v3.8.6">
+  <meta property="og:description" content="촬영한 색을 끝까지. Log 에서 룩, 필름 질감, 납품 검사, Resolve 전달까지 단 하나의 워크플로우.">
+  <meta property="og:image" content="https://cinemaster-ai.github.io/img/og.jpg">
+  <link rel="icon" href="img/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="img/icon-512.png">
+  <script>document.documentElement.className = "js";</script>
+  <link rel="preload" href="fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="site.css?v=3.8.6-fd9f7c52">
+</head>
+<body>
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#intro" data-reload aria-label="CineMaster AI 처음으로 (새로고침)"><img src="img/logo-mark.svg" alt="" width="24" height="24">CineMaster AI <span class="ver">v3.8.6</span></a>
+    <nav class="tabs" aria-label="홈페이지 메뉴">
+      <a href="#intro" data-nav="intro">소개</a>
+      <a href="#features" data-nav="features">기능</a>
+      <a href="#color" data-nav="color">색공간</a>
+      <a href="#flow" data-nav="flow">워크플로우</a>
+      <a href="#download" data-nav="download">다운로드</a>
+      <a href="#more" data-nav="more">더 보기</a>
+    </nav>
+    <div class="nav-acts">
+      <a class="btn btn-line" href="#web"><span class="lg">웹에서 써 보기</span><span class="sm">웹 버전</span></a>
+      <a class="btn btn-amber" href="#download" data-installer-cta><span class="lg">설치 파일 받기</span><span class="sm">내려받기</span></a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <!-- [소개] -->
+  <section class="view hero is-on" id="intro" data-view="intro" aria-labelledby="hero-h">
+    <div class="wrap hero-head">
+      <h1 id="hero-h"><span class="soft">촬영한 색을 끝까지.</span><br>단 하나의 워크플로우</h1>
+      <p class="hero-sub">카메라 Log 를 불러와 룩을 만들고, 필름 질감을 입히고, 납품 검사를 거쳐 LUT 과 DaVinci Resolve 노드로 내보냅니다. 처음부터 끝까지 한 프로그램, 같은 수식입니다.</p>
+    </div>
+
+    <div class="wipe-wrap" style="--wipe: 50%">
+      <div class="wipe frame" data-wipe>
+        <picture>
+          <source media="(max-width: 760px)" srcset="img/hero/Teal_Orange_960.jpg" data-grade-source>
+          <img class="wipe-img grade" draggable="false" src="img/hero/Teal_Orange.jpg" alt="같은 장면에 Teal &amp; Orange 룩을 입힌 결과" width="1920" height="1280" data-grade-img>
+        </picture>
+        <picture>
+          <source media="(max-width: 760px)" srcset="img/hero/log_960.jpg">
+          <img class="wipe-img log" draggable="false" src="img/hero/log.jpg" alt="ARRI LogC3 로 기록한 원본. 색이 빠지고 대비가 낮습니다" width="1920" height="1280">
+        </picture>
+        <span class="wipe-tag tag-left">Log 원본</span>
+        <span class="wipe-tag tag-right" data-grade-tag>Teal &amp; Orange</span>
+        <div class="handle" role="slider" tabindex="0" aria-label="Log 원본과 그레이딩 결과를 나누는 위치" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+          <span class="grip" aria-hidden="true"></span>
+        </div>
+      </div>
+      <div class="wrap wipe-under">
+        <div class="looks" role="radiogroup" aria-label="오른쪽에 보여 줄 룩">
+          <button type="button" role="radio" aria-checked="true" tabindex="0" data-look="Teal_Orange">Teal &amp; Orange</button>
+          <button type="button" role="radio" aria-checked="false" tabindex="-1" data-look="Warm_Print">Warm Print Film</button>
+          <button type="button" role="radio" aria-checked="false" tabindex="-1" data-look="Bleach_Bypass">Bleach Bypass</button>
+          <button type="button" role="radio" aria-checked="false" tabindex="-1" data-look="Moonlight">Moonlight (Day for Night)</button>
+          <button type="button" role="radio" aria-checked="false" tabindex="-1" data-look="Neutral_Rec709">Neutral Rec.709</button>
+        </div>
+        <p class="caption" data-look-desc>섀도는 청록, 하이라이트·피부는 주황. 상업 영화의 대표적인 색 대비</p>
+      </div>
+      <p class="wrap caption small">가운데 선을 끌거나 방향키로 움직여 보세요. 왼쪽은 스톡 사진을 ARRI LogC3 로 되돌린 원본, 오른쪽은 CineMaster 엔진이 그레이딩한 실제 결과입니다.</p>
+    </div>
+
+    <div class="specs" aria-label="주요 사양">
+      <ul class="wrap">
+        <li><a href="#cs-in"><span class="num">9</span><span class="what">카메라 Log</span>
+          <span class="more">ARRI LogC3 · LogC4, RED Log3G10, Sony S-Log3, Blackmagic Film Gen 5, Canon Log 2 · 3, Apple Log</span><span class="go">입력 목록 보기</span></a></li>
+        <li><a href="#cs-film"><span class="num">10 + 6</span><span class="what">필름 스톡</span>
+          <span class="more">네거티브 Vision3 50D · 200T · 250D · 500T, Eterna, Double-X 외 4종. 프린트 2383 · 3513 · 2393 외</span><span class="go">스톡 목록 보기</span></a></li>
+        <li><a href="#cs-out"><span class="num">7 × 11</span><span class="what">출력 색역 × 감마</span>
+          <span class="more">Rec.709 · sRGB · P3-D65 · DCI-P3 · Rec.2020, Gamma 2.4 부터 PQ 4000 nit · HLG 까지</span><span class="go">출력 목록 보기</span></a></li>
+        <li><a href="#features"><span class="num">16</span><span class="what">노드</span>
+          <span class="more">보정을 노드에 나눠 쌓고, 노드마다 Power Window 와 HSL 퀄리파이어로 범위를 정합니다</span><span class="go">기능 보기</span></a></li>
+      </ul>
+    </div>
+
+    <div class="wrap uses">
+      <h2 id="use-h"><span class="soft">현장에서 납품까지,</span> 이럴 때 씁니다</h2>
+      <ul class="use-list">
+        <li>
+          <h3>현장 모니터와 카메라에 넣을 룩이 필요할 때</h3>
+          <div><p>가벼운 33pt LUT 을 굽고, 카메라 SD 카드에 넣는 폴더 구조 그대로 묶어 줍니다. 지금 룩의 노출과 화이트밸런스를 카메라 세팅으로 되짚어 알려 줍니다.</p>
+            <p class="tags">On-Set 33pt · 카메라 SD 카드 팩 · 현장 세팅 가이드</p></div>
+        </li>
+        <li>
+          <h3>DaVinci Resolve 에서 마무리할 때</h3>
+          <div><p>Resolve 에서 고른 클립을 따라가며 룩을 만들고, 지정한 노드 하나에만 보냅니다. 노드 구조째 옮기려면 노드 패키지로 내보냅니다.</p>
+            <p class="tags">라이브 연동 · 노드 패키지 · DCTL</p></div>
+        </li>
+        <li>
+          <h3>카메라가 여러 대일 때</h3>
+          <div><p>카메라마다 다른 Log 를 같은 작업 색공간으로 모아 같은 룩을 겁니다. 카메라와 룩의 조합을 한 번에 굽습니다.</p>
+            <p class="tags">멀티캠 센서 매칭 · Batch LUT Bakery · Shot Match</p></div>
+        </li>
+        <li>
+          <h3>혼자 만들고, 색보정이 처음일 때</h3>
+          <div><p>네 단계 가이드 모드를 따라가면 첫 LUT 이 나옵니다. 룩 16개를 내 영상에 입힌 썸네일로 고르고, 참고 사진 한 장에 색을 맞춥니다.</p>
+            <p class="tags">가이드 모드 · 룩 브라우저 · 레퍼런스 톤 매칭</p></div>
+        </li>
+        <li>
+          <h3>납품 규격을 맞춰야 할 때</h3>
+          <div><p>색역과 클리핑을 먼저 검사하고, 넘친 곳은 규격 안으로 자동 정리합니다. SDR 과 HDR 을 함께 냅니다.</p>
+            <p class="tags">납품 QC · Auto-Legalize · HDR10 + SDR 듀얼 마스터 · Dolby Vision XML</p></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- [기능] { 여섯 묶음 } ( 요점 ) -->
+  <section class="view" id="features" data-view="features" aria-labelledby="feat-h">
+    <div class="wrap">
+    <h2 id="feat-h"><span class="soft">한 프로그램 안에서</span> 할 수 있는 여섯 가지</h2>
+    <p class="lede">색을 만들고, 필름을 입히고, 확인하고, 내보냅니다. 항목을 고르면 실제로 쓰는 모습과 요점이 나옵니다.</p>
+    <div class="pillars" data-pillars>
+      <div class="pillar-tabs" role="tablist" aria-label="주요 기능" aria-orientation="vertical">
+        <button type="button" role="tab" id="pl-same" aria-controls="plp" aria-selected="true" data-pillar="same">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="12" r="4.5"/><circle cx="16" cy="12" r="4.5"/></svg>
+          <b>한 번 만든 색, 어디서나 같은 색</b>
+          <span>화면에서 본 색이 LUT, Resolve 노드, 납품 파일에서 그대로 나옵니다.</span>
+        </button>
+        <button type="button" role="tab" id="pl-tools" aria-controls="plp" aria-selected="false" tabindex="-1" data-pillar="tools">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="2"/><path d="M12 3.5v4M12 16.5v4M3.5 12h4M16.5 12h4"/></svg>
+          <b>색을 만드는 도구</b>
+          <span>휠과 커브부터 구간별 노출, 색상 메쉬, 노드와 윈도우까지.</span>
+        </button>
+        <button type="button" role="tab" id="pl-film" aria-controls="plp" aria-selected="false" tabindex="-1" data-pillar="film">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3.5" width="16" height="17" rx="2"/><path d="M8 3.5v17M16 3.5v17M4 8h4M4 12h4M4 16h4M16 8h4M16 12h4M16 16h4"/></svg>
+          <b>필름 랩</b>
+          <span>네거티브와 프린트 필름을 골라 현상소의 과정을 그대로 거칩니다.</span>
+        </button>
+        <button type="button" role="tab" id="pl-verify" aria-controls="plp" aria-selected="false" tabindex="-1" data-pillar="verify">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 17.5l4-7 3.5 4 3-8 3 6.5 3.5-3"/><path d="M3.5 20.5h17"/></svg>
+          <b>맞추고 확인하기</b>
+          <span>참고 사진에 색을 맞추고, 눈이 아니라 스코프로 확인합니다.</span>
+        </button>
+        <button type="button" role="tab" id="pl-deliver" aria-controls="plp" aria-selected="false" tabindex="-1" data-pillar="deliver">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5v11M7.5 10.5l4.5 4.5 4.5-4.5"/><path d="M4 16.5v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+          <b>납품</b>
+          <span>출력 규격을 고르고, 문제를 먼저 찾고, 여러 출력을 한 번에 굽습니다.</span>
+        </button>
+        <button type="button" role="tab" id="pl-resolve" aria-controls="plp" aria-selected="false" tabindex="-1" data-pillar="resolve">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 14.5l5-5"/><path d="M8 11l-2.2 2.2a3.5 3.5 0 0 0 5 5L13 16"/><path d="M16 13l2.2-2.2a3.5 3.5 0 0 0-5-5L11 8"/></svg>
+          <b>Resolve 연동과 미디어</b>
+          <span>켜 둔 DaVinci Resolve 의 클립을 따라가며 룩을 만들고 바로 보냅니다.</span>
+        </button>
+      </div>
+      <div class="pillar-panel" id="plp" role="tabpanel" aria-labelledby="pl-same">
+        <figure class="shot frame">
+          <video data-pillar-video src="video/f_same.mp4" poster="video/f_same.jpg" width="1280" height="800" muted loop playsinline autoplay preload="metadata" aria-label="DELIVER 페이지에서 LUT 정확도를 재고 일괄 내보내기 출력을 고르는 영상"></video>
+        </figure>
+        <ul class="pillar-points" data-pillar-points>
+          <li>프로그램 엔진, 화면, 브라우저 버전이 같은 수식을 씁니다</li>
+          <li>.cube LUT 33 · 65 크기, 범위 세 가지</li>
+          <li>LUT 에 담기지 않는 질감은 DCTL 로</li>
+          <li>노드마다 LUT 을 나눈 Resolve 노드 패키지</li>
+        </ul>
+        <p class="pillar-note" data-pillar-note>화면과 내보낸 LUT 이 같은지는 94가지 상태로 매번 자동 비교합니다.</p>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- [색공간] { 입력 · 작업 · 출력 · 필름 } ( 목록 ) -->
+  <section class="view" id="color" data-view="color" aria-labelledby="cs-h">
+    <div class="wrap" data-subs>
+      <h2 id="cs-h"><span class="soft">카메라 Log 에서</span> 납품 색공간까지</h2>
+      <p class="lede">어떤 카메라로 찍었든 하나의 작업 색공간으로 옮긴 뒤 룩을 만들고, 마지막에 납품 색공간으로 내보냅니다.</p>
+      <div class="subtabs" role="tablist" aria-label="색공간 단계">
+        <button type="button" role="tab" id="st-cs-in" aria-controls="cs-in" aria-selected="true" data-sub="cs-in"><span class="no">01</span> 입력 · 카메라 Log</button>
+        <button type="button" role="tab" id="st-cs-work" aria-controls="cs-work" aria-selected="false" tabindex="-1" data-sub="cs-work"><span class="no">02</span> 작업 색공간</button>
+        <button type="button" role="tab" id="st-cs-out" aria-controls="cs-out" aria-selected="false" tabindex="-1" data-sub="cs-out"><span class="no">03</span> 출력</button>
+        <button type="button" role="tab" id="st-cs-film" aria-controls="cs-film" aria-selected="false" tabindex="-1" data-sub="cs-film">필름 스톡</button>
+      </div>
+
+      <div class="subpanel is-on" id="cs-in" role="tabpanel" aria-labelledby="st-cs-in">
+        <p class="sub-lede">카메라 Log 9종을 읽습니다. 이름을 누르면 같은 장면을 그 카메라로 기록했을 때의 원본이 보입니다.</p>
+        <div class="cs-how">
+          <div>
+            <h3>프로그램에서는 이렇게 고릅니다</h3>
+            <p>MEDIA 페이지의 Manufacturer · Log / Gamut 에서 고릅니다. 영상을 불러오면 자동으로 추천합니다.</p>
+          </div>
+          <div class="frame"><video src="video/cs_in.mp4" poster="video/cs_in.jpg" width="1280" height="800" muted loop playsinline autoplay preload="none" aria-label="MEDIA 페이지의 Manufacturer · Log / Gamut 에서 고릅니다. 영상을 불러오면 자동으로 추천합니다. (실제 조작 영상)"></video></div>
+        </div>
+        <div class="cs-split" data-cs-box>
+          <ul class="kv two pick">
+            <li><button type="button" data-cs="in:arri_logc3" data-name="ARRI LogC3 / ARRI Wide Gamut 3" aria-pressed="false"><b>ARRI LogC3</b><span>ARRI Wide Gamut 3 · EI 800</span></button></li>
+            <li><button type="button" data-cs="in:arri_logc4" data-name="ARRI LogC4 / ARRI Wide Gamut 4" aria-pressed="false"><b>ARRI LogC4</b><span>ARRI Wide Gamut 4</span></button></li>
+            <li><button type="button" data-cs="in:red_log3g10_rwg" data-name="RED Log3G10 / REDWideGamutRGB" aria-pressed="false"><b>RED Log3G10</b><span>REDWideGamutRGB</span></button></li>
+            <li><button type="button" data-cs="in:sony_slog3_sgamut3cine" data-name="Sony S-Log3 / S-Gamut3.Cine" aria-pressed="false"><b>Sony S-Log3</b><span>S-Gamut3.Cine</span></button></li>
+            <li><button type="button" data-cs="in:sony_slog3_sgamut3" data-name="Sony S-Log3 / S-Gamut3" aria-pressed="false"><b>Sony S-Log3</b><span>S-Gamut3</span></button></li>
+            <li><button type="button" data-cs="in:bmd_film_gen5" data-name="Blackmagic Film Gen 5 / BMD Wide Gamut Gen 5" aria-pressed="false"><b>Blackmagic Film Gen 5</b><span>BMD Wide Gamut Gen 5</span></button></li>
+            <li><button type="button" data-cs="in:canon_clog2_cgamut" data-name="Canon Log 2 / Cinema Gamut" aria-pressed="false"><b>Canon Log 2</b><span>Cinema Gamut</span></button></li>
+            <li><button type="button" data-cs="in:canon_clog3_cgamut" data-name="Canon Log 3 / Cinema Gamut" aria-pressed="false"><b>Canon Log 3</b><span>Cinema Gamut</span></button></li>
+            <li><button type="button" data-cs="in:apple_log" data-name="Apple Log / Rec.2020" aria-pressed="false"><b>Apple Log</b><span>Rec.2020</span></button></li>
+          </ul>
+          <figure class="cs-view">
+            <div class="frame"><img data-cs-img src="img/cs/in_arri_logc3.jpg" alt="ARRI LogC3 미리보기" width="880" height="587" loading="lazy"></div>
+            <figcaption data-cs-cap></figcaption>
+          </figure>
+        </div>
+        <p class="small">영상을 불러오면 메타데이터를 보고 카메라와 Log 를 추천합니다.</p>
+      </div>
+
+      <div class="subpanel" id="cs-work" role="tabpanel" aria-labelledby="st-cs-work">
+        <p class="sub-lede">룩은 카메라 색이 아니라 작업 색공간에서 만듭니다. 그래서 한 번 만든 룩을 다른 카메라 영상에도 그대로 씁니다.</p>
+        <div class="cs-how">
+          <div>
+            <h3>프로그램에서는 이렇게 고릅니다</h3>
+            <p>MEDIA 페이지의 Working Space 에서 고릅니다.</p>
+          </div>
+          <div class="frame"><video src="video/cs_work.mp4" poster="video/cs_work.jpg" width="1280" height="800" muted loop playsinline autoplay preload="none" aria-label="MEDIA 페이지의 Working Space 에서 고릅니다. (실제 조작 영상)"></video></div>
+        </div>
+        <div class="cs-split" data-cs-box>
+          <div>
+            <ul class="kv pick">
+              <li><button type="button" data-cs="work:davinci_wg_intermediate" data-name="DaVinci Wide Gamut / Intermediate" aria-pressed="false"><b>DaVinci Wide Gamut</b><span>DaVinci Intermediate. Resolve 와 같은 기준이라 노드로 옮기기 쉽습니다.</span></button></li>
+              <li><button type="button" data-cs="work:acescct" data-name="ACES AP1 / ACEScct" aria-pressed="false"><b>ACES AP1</b><span>ACEScct. ACES 로 진행하는 작업에 맞춥니다.</span></button></li>
+            </ul>
+            <ul class="kv">
+              <li><b>색순응</b><span>Bradford · CAT02 · XYZ Scaling</span></li>
+              <li><b>화이트밸런스</b><span>색온도 · 틴트 · Green 젤 · Mired</span></li>
+              <li><b>피부색 보호</b><span>스킨톤 라인 기준, 룩을 바꿔도 유지</span></li>
+            </ul>
+          </div>
+          <figure class="cs-view">
+            <div class="frame"><img data-cs-img src="img/cs/work_davinci_wg_intermediate.jpg" alt="DaVinci Wide Gamut 미리보기" width="880" height="587" loading="lazy"></div>
+            <figcaption data-cs-cap></figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="subpanel" id="cs-out" role="tabpanel" aria-labelledby="st-cs-out">
+        <p class="sub-lede">출력 색역 7종과 감마 11종을 골라 조합합니다. 이름을 누르면 그 규격으로 내보낸 그림이 보입니다.</p>
+        <div class="cs-how">
+          <div>
+            <h3>프로그램에서는 이렇게 고릅니다</h3>
+            <p>DELIVER 페이지의 Output Color Space · Output Gamma 에서 고릅니다.</p>
+          </div>
+          <div class="frame"><video src="video/cs_out.mp4" poster="video/cs_out.jpg" width="1280" height="800" muted loop playsinline autoplay preload="none" aria-label="DELIVER 페이지의 Output Color Space · Output Gamma 에서 고릅니다. (실제 조작 영상)"></video></div>
+        </div>
+        <div class="cs-split" data-cs-box>
+          <div>
+            <h3 class="grp-h">색역 <span class="count">7</span></h3>
+            <ul class="chips pick"><li><button type="button" data-cs="gamut:rec709" aria-pressed="false">Rec.709</button></li><li><button type="button" data-cs="gamut:srgb" aria-pressed="false">sRGB</button></li><li><button type="button" data-cs="gamut:p3_d65" aria-pressed="false">P3-D65</button></li><li><button type="button" data-cs="gamut:dci_p3" aria-pressed="false">DCI-P3</button></li><li><button type="button" data-cs="gamut:rec2020" aria-pressed="false">Rec.2020</button></li><li><button type="button" data-cs="gamut:davinci_wide_gamut" aria-pressed="false">DaVinci Wide Gamut</button></li><li><button type="button" data-cs="gamut:aces_ap1" aria-pressed="false">ACES AP1</button></li></ul>
+            <h3 class="grp-h">감마 · EOTF <span class="count">11</span></h3>
+            <ul class="chips pick"><li><button type="button" data-cs="gamma:gamma_24" aria-pressed="false">Gamma 2.4</button></li><li><button type="button" data-cs="gamma:gamma_22" aria-pressed="false">Gamma 2.2</button></li><li><button type="button" data-cs="gamma:srgb" aria-pressed="false">sRGB</button></li><li><button type="button" data-cs="gamma:rec709_a" aria-pressed="false">Rec.709-A</button></li><li><button type="button" data-cs="gamma:gamma_26" aria-pressed="false">Gamma 2.6</button></li><li><button type="button" data-cs="gamma:rec709_scene" aria-pressed="false">Rec.709 Scene</button></li><li><button type="button" data-cs="gamma:st2084_pq_1000" aria-pressed="false">PQ 1000 nit</button></li><li><button type="button" data-cs="gamma:st2084_pq_2000" aria-pressed="false">PQ 2000 nit</button></li><li><button type="button" data-cs="gamma:st2084_pq_4000" aria-pressed="false">PQ 4000 nit</button></li><li><button type="button" data-cs="gamma:hlg" aria-pressed="false">HLG</button></li><li><button type="button" data-cs="gamma:cineon_log" aria-pressed="false">Cineon Log</button></li></ul>
+            <ul class="kv">
+              <li><b>Full</b><span>카메라 Log 에서 화면까지 LUT 하나로</span></li>
+              <li><b>Look-Only</b><span>CST 사이에 넣는, 룩만 담은 LUT</span></li>
+              <li><b>Scene</b><span>노출 · 화이트밸런스와 룩까지, 출력 변환은 빼고</span></li>
+            </ul>
+          </div>
+          <figure class="cs-view">
+            <div class="frame"><img data-cs-img src="img/cs/gamut_rec709.jpg" alt="Rec.709 미리보기" width="880" height="587" loading="lazy"></div>
+            <figcaption data-cs-cap></figcaption>
+          </figure>
+        </div>
+        <p class="small">HDR 은 MaxCLL · MaxFALL 을 재고 Dolby Vision XML 과 SDR 트림을 함께 만듭니다. Mac 의 QuickTime 감마 차이는 Rec.709-A 로 맞춥니다.</p>
+      </div>
+
+      <div class="subpanel" id="cs-film" role="tabpanel" aria-labelledby="st-cs-film">
+        <p class="sub-lede">네거티브와 프린트를 따로 골라 현상소처럼 두 단계를 거칩니다. 이름을 누르면 그 필름의 느낌이 보입니다.</p>
+        <div class="cs-how">
+          <div>
+            <h3>프로그램에서는 이렇게 고릅니다</h3>
+            <p>FILM LAB 페이지에서 조합 버튼을 누르거나 Negative · Print Stock 을 따로 고릅니다.</p>
+          </div>
+          <div class="frame"><video src="video/cs_film.mp4" poster="video/cs_film.jpg" width="1280" height="800" muted loop playsinline autoplay preload="none" aria-label="FILM LAB 페이지에서 조합 버튼을 누르거나 Negative · Print Stock 을 따로 고릅니다. (실제 조작 영상)"></video></div>
+        </div>
+        <div class="cs-split" data-cs-box>
+          <div>
+            <h3 class="grp-h">네거티브 <span class="count">10</span></h3>
+            <ul class="chips pick"><li><button type="button" data-cs="neg:VISION3_50D" aria-pressed="false">Vision3 50D</button></li><li><button type="button" data-cs="neg:VISION3_200T" aria-pressed="false">Vision3 200T</button></li><li><button type="button" data-cs="neg:VISION3_250D" aria-pressed="false">Vision3 250D</button></li><li><button type="button" data-cs="neg:VISION3_500T" aria-pressed="false">Vision3 500T</button></li><li><button type="button" data-cs="neg:ETERNA_500T" aria-pressed="false">Eterna 500T</button></li><li><button type="button" data-cs="neg:DOUBLE_X_5222" aria-pressed="false">Double-X 5222</button></li><li><button type="button" data-cs="neg:KODACHROME_64" aria-pressed="false">Kodachrome 64</button></li><li><button type="button" data-cs="neg:VELVIA_50" aria-pressed="false">Velvia 50</button></li><li><button type="button" data-cs="neg:CINESTILL_800T" aria-pressed="false">CineStill 800T</button></li><li><button type="button" data-cs="neg:PORTRA_400" aria-pressed="false">Portra 400</button></li></ul>
+            <h3 class="grp-h">프린트 <span class="count">6</span></h3>
+            <ul class="chips pick"><li><button type="button" data-cs="print:KODAK_2383_D55" aria-pressed="false">2383 D55</button></li><li><button type="button" data-cs="print:KODAK_2383_D60" aria-pressed="false">2383 D60</button></li><li><button type="button" data-cs="print:KODAK_2383_D65" aria-pressed="false">2383 D65</button></li><li><button type="button" data-cs="print:FUJI_3513_D60" aria-pressed="false">3513 D60</button></li><li><button type="button" data-cs="print:KODAK_2393" aria-pressed="false">2393</button></li><li><button type="button" data-cs="print:ENDURA_PAPER" aria-pressed="false">Endura 인화지</button></li></ul>
+            <ul class="kv">
+              <li><b>현상</b><span>Push / Pull 증감, 프린터 라이트, CMY 헤드</span></li>
+              <li><b>질감</b><span>그레인 · 할레이션 · 블룸 · 게이트 위브</span></li>
+              <li><b>나만의 스톡</b><span>갖고 있는 필름 LUT 을 읽어 슬롯 10개에 저장</span></li>
+            </ul>
+          </div>
+          <figure class="cs-view">
+            <div class="frame"><img data-cs-img src="img/cs/neg_VISION3_500T.jpg" alt="Vision3 500T 미리보기" width="880" height="587" loading="lazy"></div>
+            <figcaption data-cs-cap></figcaption>
+          </figure>
+        </div>
+        <p class="small">네거티브와 프린트를 함께 쓰면 조합은 60가지입니다. 스톡 이름은 닮게 만든 대상을 가리키며, 각 제조사와는 관계가 없습니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- [워크플로우] { 다섯 페이지 } ( 나오는 파일 ) -->
+  <section class="view" id="flow" data-view="flow" aria-labelledby="flow-h">
+    <div class="wrap">
+    <h2 id="flow-h"><span class="soft">불러오기부터 납품까지,</span> 다섯 페이지가 한 줄로 이어집니다</h2>
+    <p class="lede">프로그램 아래쪽의 다섯 페이지를 왼쪽부터 차례로 지나면 끝납니다. 프로그램을 바꾸거나 파일을 옮길 일이 없습니다.</p>
+    <div class="pages" data-pages>
+      <div class="page-tabs" role="tablist" aria-label="프로그램 페이지">
+        <button type="button" role="tab" id="pt-media" aria-controls="pp" aria-selected="true" data-page="media"><span class="no">01</span> MEDIA</button>
+        <button type="button" role="tab" id="pt-conform" aria-controls="pp" aria-selected="false" tabindex="-1" data-page="conform"><span class="no">02</span> CONFORM</button>
+        <button type="button" role="tab" id="pt-color" aria-controls="pp" aria-selected="false" tabindex="-1" data-page="color"><span class="no">03</span> COLOR</button>
+        <button type="button" role="tab" id="pt-film" aria-controls="pp" aria-selected="false" tabindex="-1" data-page="film"><span class="no">04</span> FILM LAB</button>
+        <button type="button" role="tab" id="pt-deliver" aria-controls="pp" aria-selected="false" tabindex="-1" data-page="deliver"><span class="no">05</span> DELIVER</button>
+      </div>
+      <div class="page-panel" id="pp" role="tabpanel" aria-labelledby="pt-media">
+        <figure class="shot frame">
+          <video data-page-video src="video/media.mp4" poster="video/media.jpg" width="1280" height="800" muted loop playsinline autoplay preload="metadata" aria-label="MEDIA 페이지를 실제로 조작하는 영상"></video>
+        </figure>
+        <p class="page-text" data-page-text>원본 Log 스틸이나 영상을 불러오면 카메라와 Log 종류를 알아서 추천합니다. 드라이브를 썸네일로 둘러보고 쓸 클립을 미디어 풀에 모아 두며, 레퍼런스 스틸을 올려 색을 맞출 준비를 합니다.</p>
+      </div>
+    </div>
+
+    <div class="outs" id="outputs">
+      <h3 class="big"><span class="soft">룩 하나에서</span> 나오는 파일</h3>
+      <dl class="kv two">
+        <div><dt>.cube LUT</dt><dd>33 또는 65 크기. Log 에서 화면까지 한 번에, 또는 CST 사이에 넣는 Look-Only 로 저장합니다.</dd></div>
+        <div><dt>DCTL</dt><dd>LUT 에 담을 수 없는 샤픈, 그레인, 할레이션, 스킨 소프트너를 Resolve 에서 그대로 겁니다.</dd></div>
+        <div><dt>Resolve 노드 패키지</dt><dd>노드마다 LUT 과 매트, 노드 트리를 만드는 스크립트를 함께 묶습니다.</dd></div>
+        <div><dt>일괄 내보내기</dt><dd>Rec.709, P3, HDR10, HLG 등 고른 출력마다 따로 구워 zip 하나로 저장합니다.</dd></div>
+        <div><dt>HDR 납품</dt><dd>HDR10 과 SDR 트림 듀얼 마스터, MaxCLL · MaxFALL, Dolby Vision XML.</dd></div>
+        <div><dt>룩 파일</dt><dd>룩 설정 전체를 담은 파일. 나중에 다시 열어 고칩니다.</dd></div>
+      </dl>
+    </div>
+    </div>
+  </section>
+
+  <!-- [다운로드] { 받기 · 웹 버전 · 설치 안내 } -->
+  <section class="view" id="download" data-view="download" aria-labelledby="dl-h">
+    <div class="wrap" data-subs>
+      <h2 id="dl-h">다운로드</h2>
+      <p class="lede">모든 기능을 쓰려면 설치형을, 먼저 둘러보려면 웹 버전을 여세요. 지금 버전은 <b>v3.8.6</b>(2026년 11월 20일)입니다.</p>
+      <div class="subtabs" role="tablist" aria-label="다운로드">
+        <button type="button" role="tab" id="st-get" aria-controls="get" aria-selected="true" data-sub="get">받기</button>
+        <button type="button" role="tab" id="st-web" aria-controls="web" aria-selected="false" tabindex="-1" data-sub="web">웹 버전</button>
+        <button type="button" role="tab" id="st-install" aria-controls="install" aria-selected="false" tabindex="-1" data-sub="install">설치 안내</button>
+      </div>
+
+      <div class="subpanel is-on" id="get" role="tabpanel" aria-labelledby="st-get">
+        <div class="dl-actions">
+          <a class="btn btn-amber" href="https://github.com/CINEMASTER-AI/cinemaster-ai.github.io/releases/download/v3.8.6/CineMaster_AI_Setup_v3.8.6.exe" data-installer>설치 파일 받기</a>
+          <a class="btn btn-dark" href="#web">웹에서 바로 써 보기</a>
+        </div>
+        <p class="hero-meta" data-installer-meta>Windows 10 · 11 (64비트) · v3.8.6 · 183.7 MB</p>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="두 가지 방법 비교표">
+      <table class="cmp">
+        <caption>두 가지 방법 비교</caption>
+        <thead><tr><th scope="col"><span class="sr">항목</span></th><th scope="col">설치형</th><th scope="col">웹</th></tr></thead>
+        <tbody>
+          <tr class="grp"><th scope="colgroup" colspan="3">어디서나 됩니다</th></tr>
+          <tr><th scope="row">색보정 · 노드</th><td><span class="ox o" role="img" aria-label="됩니다"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5"/></svg></span></td><td><span class="ox o" role="img" aria-label="됩니다"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5"/></svg></span></td></tr>
+          <tr><th scope="row">필름 랩 · 스코프</th><td><span class="ox o" role="img" aria-label="됩니다"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5"/></svg></span></td><td><span class="ox o" role="img" aria-label="됩니다"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5"/></svg></span></td></tr>
+          <tr><th scope="row">.cube LUT 저장</th><td><span class="ox o" role="img" aria-label="됩니다"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5"/></svg></span></td><td><span class="ox o" role="img" aria-label="됩니다"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5"/></svg></span></td></tr>
+          <tr class="grp"><th scope="colgroup" colspan="3">설치형에서만 됩니다</th></tr>
+          <tr><th scope="row">Shot Match</th><td><span class="ox o" role="img" aria-label="됩니다"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5"/></svg></span></td><td><span class="ox x" role="img" aria-label="안 됩니다"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/></svg></span></td></tr>
+          <tr><th scope="row">Resolve 연동</th><td><span class="ox o" role="img" aria-label="됩니다"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5"/></svg></span></td><td><span class="ox x" role="img" aria-label="안 됩니다"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/></svg></span></td></tr>
+          <tr><th scope="row">HDR 납품</th><td><span class="ox o" role="img" aria-label="됩니다"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5"/></svg></span></td><td><span class="ox x" role="img" aria-label="안 됩니다"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/></svg></span></td></tr>
+          <tr><th scope="row">미디어 풀</th><td><span class="ox o" role="img" aria-label="됩니다"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5"/></svg></span></td><td><span class="ox x" role="img" aria-label="안 됩니다"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/></svg></span></td></tr>
+          <tr><th scope="row">Gemini AI 분석</th><td><span class="ox o" role="img" aria-label="됩니다"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5"/></svg></span></td><td><span class="ox x" role="img" aria-label="안 됩니다"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/></svg></span></td></tr>
+          <tr class="grp"><th scope="colgroup" colspan="3">설치와 업데이트</th></tr>
+          <tr><th scope="row">설치</th><td><span class="txt">마법사</span></td><td><span class="txt">필요 없음</span></td></tr>
+          <tr><th scope="row">새 버전 알림</th><td><span class="ox o" role="img" aria-label="됩니다"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5"/></svg></span></td><td><span class="txt">늘 최신</span></td></tr>
+        </tbody>
+      </table>
+      </div>
+
+        <h3 class="sec">파일 정보</h3>
+          <dl class="fileinfo">
+            <div class="row"><dt>설치 파일</dt>
+              <dd>CineMaster_AI_Setup_v3.8.6.exe · 183.7 MB</dd>
+              <dd class="hash"><span>SHA-256 f0ec01c01f0e4a2de8c3ba7a02b0a535ddc192f24e3ab47e4cf2b9b485b3d7a2</span><button type="button" class="copy" data-copy="f0ec01c01f0e4a2de8c3ba7a02b0a535ddc192f24e3ab47e4cf2b9b485b3d7a2" aria-label="설치 파일 SHA-256 복사">복사</button></dd>
+            </div>
+            <div class="row"><dt>웹 버전 zip</dt>
+              <dd>CineMaster_AI_Web_v3.8.6.zip · 2.6 MB</dd>
+              <dd class="hash"><span>SHA-256 f860fe4a195b032bdda5c09d799ac36d634e8ce78948f2a8ec618364e6227c30</span><button type="button" class="copy" data-copy="f860fe4a195b032bdda5c09d799ac36d634e8ce78948f2a8ec618364e6227c30" aria-label="웹 버전 zip SHA-256 복사">복사</button></dd>
+            </div>
+            <div class="row"><dt>사용설명서 PDF</dt>
+              <dd>CineMaster_AI_v3.8.6_Manual_KR.pdf · 8.3 MB</dd>
+            </div>
+          </dl>
+          <p class="small">받은 파일이 이 페이지의 파일과 같은지 확인하려면 PowerShell 에서 <code>Get-FileHash 파일이름</code> 을 실행해 위 SHA-256 과 비교하세요.</p>
+      </div>
+
+      <div class="subpanel" id="web" role="tabpanel" aria-labelledby="st-web">
+        <p class="sub-lede">웹 버전은 이 페이지 안에서 열립니다. 사진과 영상은 내 브라우저 안에서만 처리되고 어디에도 올라가지 않습니다.</p>
+    <div class="web-frame" data-web-frame>
+      <div class="web-cover">
+        <img src="img/pages/color_1000.jpg" alt="" width="1000" height="625" loading="lazy">
+        <div class="web-cover-in">
+          <button class="btn btn-light" type="button" data-web-open>이 페이지에서 열기</button>
+          <a class="btn btn-line" href="app/" target="_blank" rel="noopener">새 창으로 열기</a>
+        </div>
+      </div>
+    </div>
+    <div class="web-notes">
+      <p>웹 버전은 서버 없이 브라우저만으로 돌아갑니다. 색보정, 노드, Power Window, 필름 랩, 스코프, .cube 저장은 설치형과 같은 수식으로 동작합니다.
+        Shot Match, Resolve 연동, 미디어 풀, HDR 납품처럼 PC 쪽 프로그램이 계산하는 기능은 설치형에서 쓰세요.</p>
+      <p class="small">PC 화면 기준으로 만들었습니다. 휴대폰에서는 권장하지 않습니다. 인터넷 없이 쓰려면 <a href="downloads/CineMaster_AI_Web_v3.8.6.zip" download>웹 버전 zip, 2.6 MB</a> 을 받아 압축을 풀고 <code>index.html</code> 을 여세요.</p>
+    </div>
+      </div>
+
+      <div class="subpanel" id="install" role="tabpanel" aria-labelledby="st-install">
+        <div class="dl-grid">
+          <div>
+          <h3>필요한 환경</h3>
+          <ul class="plain">
+            <li>Windows 10 또는 11, 64비트</li>
+            <li>WebGL2 를 지원하는 그래픽 (최근 몇 년 안의 PC 면 대부분 됩니다)</li>
+            <li>메모리 8GB 이상, 화면 1920×1080 이상 권장</li>
+            <li>웹 버전은 Chrome 또는 Edge 최신판</li>
+            <li>Resolve 연동은 DaVinci Resolve Studio</li>
+          </ul>
+
+          <h3>설치 순서</h3>
+          <ol class="steps">
+            <li><b>설치 파일 받기</b>를 눌러 <code>CineMaster_AI_Setup_v3.8.6.exe</code> 을 내려받습니다.</li>
+            <li>내려받은 파일을 실행합니다.</li>
+            <li><b>다음</b>과 <b>설치</b>를 차례로 누릅니다.</li>
+            <li>바탕화면의 <b>CineMaster AI</b> 아이콘으로 실행합니다.</li>
+          </ol>
+          <p class="small">새 버전은 새 설치 파일을 그대로 실행하면 덮어 설치됩니다. 만든 룩과 설정은 그대로 남습니다.</p>
+
+          </div>
+          <div>
+          <h3>"Windows의 PC 보호" 창이 뜨면</h3>
+          <p>설치 파일에 아직 코드 서명 인증서가 없어서, 처음 실행할 때 Windows SmartScreen 이 파란 창을 띄웁니다. 아래 순서로 실행하세요.</p>
+          <ol class="steps">
+            <li>창 안의 <b>추가 정보</b>를 누릅니다.</li>
+            <li>아래에 생긴 <b>실행</b> 버튼을 누릅니다.</li>
+          </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- [더 보기] { 설명서 · 업데이트 · 질문 · 문의 } -->
+  <section class="view" id="more" data-view="more" aria-labelledby="more-h">
+    <div class="wrap" data-subs>
+      <h2 id="more-h">더 보기</h2>
+      <div class="subtabs" role="tablist" aria-label="더 보기">
+        <button type="button" role="tab" id="st-manual" aria-controls="manual" aria-selected="true" data-sub="manual">사용설명서</button>
+        <button type="button" role="tab" id="st-updates" aria-controls="updates" aria-selected="false" tabindex="-1" data-sub="updates">업데이트 내역</button>
+        <button type="button" role="tab" id="st-faq" aria-controls="faq" aria-selected="false" tabindex="-1" data-sub="faq">자주 묻는 질문</button>
+        <button type="button" role="tab" id="st-contact" aria-controls="contact" aria-selected="false" tabindex="-1" data-sub="contact">문의</button>
+      </div>
+
+      <div class="subpanel is-on" id="manual" role="tabpanel" aria-labelledby="st-manual">
+    <div class="manual">
+      <a class="cover" href="downloads/CineMaster_AI_v3.8.6_Manual_KR.pdf" target="_blank" rel="noopener" aria-label="사용설명서 PDF 열기">
+        <img src="img/manual_cover.jpg" alt="CineMaster AI 사용설명서 표지" width="580" height="820" loading="lazy">
+      </a>
+      <div>
+        <h3 class="big" id="man-h">사용설명서</h3>
+        <p class="lede">실제 화면에 번호를 붙이고 쉬운 말로 풀었습니다. 처음 쓰는 분도 순서대로 따라 할 수 있습니다.</p>
+        <ul class="toc">
+          <li>시작하기와 화면 구성</li>
+          <li>첫 LUT 만들기</li>
+          <li>MEDIA: 원본 · 레퍼런스 · 미디어 풀</li>
+          <li>COLOR: 휠 · 커브 · 노드 · Power Window</li>
+          <li>레퍼런스로 색 맞추기</li>
+          <li>CONFORM: 타임라인 수집과 샷 밸런싱</li>
+          <li>FILM LAB 과 DELIVER</li>
+          <li>화면 보기 도구와 스코프</li>
+          <li>DaVinci Resolve 와 함께 쓰기</li>
+          <li>단축키와 문제 해결</li>
+        </ul>
+        <div class="row">
+          <a class="btn btn-line" href="downloads/CineMaster_AI_v3.8.6_Manual_KR.pdf" target="_blank" rel="noopener">설명서 열기</a>
+          <a class="btn btn-line" href="downloads/CineMaster_AI_v3.8.6_Manual_KR.pdf" download>PDF 내려받기</a>
+        </div>
+        <p class="file"><span class="mono">CineMaster_AI_v3.8.6_Manual_KR.pdf</span> · 8.3 MB</p>
+      </div>
+    </div>
+      </div>
+
+      <div class="subpanel" id="updates" role="tabpanel" aria-labelledby="st-updates">
+        <div class="timeline">
+      <div class="rel"><div class="rel-head"><span class="ver">v3.8.6</span><span class="date">2026-11-20</span></div><div><h3>탭과 Master 줄을 끌어서 옮기기 · 설치 후 아이콘</h3><ul><li>COLOR 의 팔레트 탭과 각 페이지 작업 칸의 탭을 마우스로 끌어 순서를 바꿀 수 있습니다. 숫자 키 1~7 은 화면에 보이는 순서를 따릅니다.</li><li>Master 패널은 줄의 이름을 잡고 위아래로 끌면 묶음 안에서 순서가 바뀝니다. 이름이 아닌 곳을 좌우로 끌면 예전처럼 값이 바뀝니다.</li><li>키보드로는 탭에 초점을 두고 Alt + 방향키로 옮깁니다. 바꾼 순서는 [레이아웃 초기화] 로 되돌립니다.</li><li>새 버전을 덮어 설치한 뒤에도 바탕화면 · 시작 메뉴 아이콘이 예전 로고로 남던 것을 고쳤습니다.</li><li>수식 · 내보내는 LUT · 저장한 룩 파일은 그대로입니다.</li></ul></div></div>
+      <details class="older"><summary>이전 버전 24개 보기</summary><div class="rel"><div class="rel-head"><span class="ver">v3.8.5</span><span class="date">2026-11-20</span></div><div><h3>클립이 많은 타임라인 수집 · 새 사용설명서</h3><ul><li>CONFORM 의 [타임라인 전체 수집] 이 클립이 많은 타임라인에서 중간에 멈추던 것을 고쳤습니다. 60개까지만 읽던 제한을 1000개로 늘렸습니다.</li><li>수집하는 동안 &#x27;42 / 150&#x27; 처럼 진행 상황과 지금 읽는 클립 이름이 보이고, [중지] 를 누르면 그때까지 읽은 클립만 가져옵니다.</li><li>같은 원본에서 여러 번 잘라 쓴 클립도 컷마다 제 대표 프레임으로 샷 밸런싱합니다. 읽지 못한 클립은 건너뛰고 나머지를 계속 읽습니다.</li><li>수집 중에는 Resolve 따라가기를 잠시 쉬어, 화면이 클립을 따라 계속 바뀌지 않습니다. 대표 프레임을 줄여 담아 메모리도 훨씬 덜 씁니다.</li><li>사용설명서를 홈페이지와 같은 디자인으로 새로 만들고, 그림과 설명을 모두 지금 화면에 맞췄습니다.</li><li>홈페이지: 머리줄 로고를 누르면 늘 첫 화면 맨 위에서 다시 열리고, 바닥글의 메일 주소는 눌리지 않는 글자로 바꿨습니다.</li><li>홈페이지: 심볼을 앱 아이콘과 같은 모양(알약마다 구멍 하나)으로 맞추고, 받기 칸은 설치 파일과 웹 버전 두 가지로 정리했습니다.</li><li>수식 · 내보내는 LUT 은 그대로입니다.</li></ul></div></div><div class="rel"><div class="rel-head"><span class="ver">v3.8.4</span><span class="date">2026-11-20</span></div><div><h3>DaVinci Resolve 의 DCTL 오류 창 해결</h3><ul><li>DaVinci Resolve 가 LUT 목록에서 Spatial_Look.dctl 을 읽을 때마다 &#x27;Error Processing DaVinci CTL&#x27; 창을 띄우던 것을 고쳤습니다.</li><li>이미 내보낸 Spatial_Look.dctl 은 새 버전에서 다시 내보내면 오류가 사라집니다. 색을 담은 .cube 파일은 그대로 쓰시면 됩니다.</li><li>화면 · 수식 · 내보내는 LUT 은 그대로입니다.</li></ul></div></div><div class="rel"><div class="rel-head"><span class="ver">v3.8.3</span><span class="date">2026-11-20</span></div><div><h3>DaVinci Resolve 가 꺼져 있을 때 창이 멈추던 것 해결</h3><ul><li>DaVinci Resolve 를 켜지 않고 쓸 때 어디를 누르든 1~3초씩 늦게 반응하던 것을 고쳤습니다. 앱이 Resolve 연결을 확인할 때마다 창이 몇 초씩 멈추던 것이 원인이었습니다.</li><li>Resolve 가 꺼져 있으면 연결을 시도하지 않고, 켜면 예전처럼 자동으로 연결합니다.</li><li>Resolve 는 켜져 있는데 연결이 안 될 때(외부 스크립팅 꺼짐 등)는 다시 시도하는 간격을 늘립니다. 연동 설정 도우미를 열면 바로 다시 시도합니다.</li><li>화면 · 수식 · 내보내는 LUT 은 그대로입니다.</li></ul></div></div><div class="rel"><div class="rel-head"><span class="ver">v3.8.2</span><span class="date">2026-11-20</span></div><div><h3>처음 누를 때 멈추던 것 해결</h3><ul><li>앱을 켠 직후 2초쯤 화면이 멈추던 것을 없앴습니다. 색 계산 준비를 뒤에서 하므로, 켜자마자 눌러도 바로 반응합니다.</li><li>샘플 룩 · 3D Cube · 스포이드 보정 · LUT 굽기를 처음 쓸 때 1초 넘게 멈추던 것을 없앴습니다. 필요한 준비를 화면이 뜬 직후 미리 해 둡니다.</li><li>샘플 룩 창이 더 빨리 열립니다. 미리보기 16칸을 한꺼번에 만들지 않고 차례로 채웁니다.</li><li>내보내는 LUT 과 수식은 그대로입니다. 예전에 저장한 룩 파일도 그대로 열립니다.</li></ul></div></div><div class="rel"><div class="rel-head"><span class="ver">v3.8.1</span><span class="date">2026-11-19</span></div><div><h3>새 로고 · 더 잘 보이는 글자 · 가벼워진 화면</h3><ul><li>로고를 새로 만들었습니다. 알약 세 개가 비스듬히 쌓여 틸에서 오렌지로 넘어가는 모양이며, 창 · 작업 표시줄 · 바탕화면 아이콘이 바뀝니다.</li><li>글자가 더 잘 보입니다. 숫자와 라벨에 쓰던 가는 고정폭 글꼴을 본문 글꼴로 바꾸고, 굵기와 작은 글자 크기를 한 단계씩 올리고, 흐린 글자색을 밝혔습니다.</li><li>그래프 크기를 마우스 휠로 바꿀 수 있습니다. FILM LAB 의 D-LogE 곡선과 HDR Zones 의 존 히스토그램 위에서 휠을 굴리면 줄고 늘어나며, 더블클릭하면 원래 크기로 돌아갑니다.</li><li>화면이 가벼워졌습니다. 값을 바꿀 때마다 화면 전체가 다시 그려지던 것을 없애고, 주기적으로 다시 그리던 그래프는 바뀐 때만 그립니다.</li><li>내보내는 LUT 과 수식은 그대로입니다. 예전에 저장한 룩 파일도 그대로 열립니다.</li></ul></div></div><div class="rel"><div class="rel-head"><span class="ver">v3.8.0</span><span class="date">2026-11-19</span></div><div><h3>화면을 전부 새로 다듬었습니다</h3><ul><li>화면 전체를 평면 디자인으로 다시 만들었습니다. 헤더 · 뷰포트 도구줄 · 스코프 · 아래 작업 칸이 창 크기에 맞춰 스스로 정리되고, 작은 창에서도 가로 스크롤이 생기지 않습니다.</li><li>글꼴을 Pretendard 와 JetBrains Mono 로 바꿔 글자와 숫자가 더 또렷하게 읽힙니다.</li><li>카드 안의 긴 설명을 없애고, 카드 오른쪽 위의 ? 버튼을 누르면 요약 · 조작 팁 · 단축키가 열리게 했습니다.</li><li>COLOR 페이지: MASTER 를 아래 작업 칸 왼쪽의 세로 패널로 옮기고, Primaries · HDR Zones(6구간을 한 화면에) · 3D Warper(점을 직접 끌기, 격자 밀도, Chroma·Luma 보기, 뷰포트에서 끌기) · Mixer · Power Window 를 새로 구성했습니다.</li><li>새 색 도구: Color Compressor 의 Range Width, 합성의 암부 · 명부 보호, Film Lab 의 Print Contrast · Black Point, Skin Hue Uniformity, Skin Midtone Softener, 퀄리파이어의 Clean Black · Clean White · Matte Blur, 스킨톤 레이더와 타깃 스킨 프리셋.</li><li>DELIVER 페이지: 출력 색역 · 감마 그래프, LUT 정확도 리포트, 파일 이름 규칙 버튼, 여러 출력을 한 번에 굽는 일괄 내보내기를 더했습니다.</li><li>스코프 창을 정리하고, 오른쪽의 세로 글자 탭을 아이콘 탭으로 바꿨습니다.</li><li>&#x27;JSON&#x27; 이라는 표기를 &#x27;룩 파일&#x27; 로 바꿨습니다 (룩 파일 저장 · 룩 파일 불러오기). 예전에 저장한 파일은 그대로 열립니다.</li><li>설정 · 가이드 창을 필요할 때 불러와 앱이 조금 더 빨리 열립니다.</li></ul></div></div><div class="rel"><div class="rel-head"><span class="ver">v3.7.2</span><span class="date">2026-11-19</span></div><div><h3>사용설명서를 처음부터 다시 만들었습니다</h3><ul><li>사용설명서를 버전별 추가 설명이 아닌 프로그램 전체 설명서로 새로 썼습니다. 모든 그림을 최신 화면으로 다시 찍고, 그림 위 번호와 짧은 설명으로 정리했습니다.</li><li>헤더의 변경 기록(시계 버튼) 창이 아래 화면에 가려 일부만 보이던 문제를 고쳤습니다.</li><li>DELIVER 페이지의 .CUBE 저장 · Resolve 에 설치 버튼이 좁은 창에서 잘려 보이지 않던 문제를 고쳤습니다. 이제 저장 버튼이 오른쪽에 따로 한 줄로 모여 있습니다.</li></ul></div></div><div class="rel"><div class="rel-head"><span class="ver">v3.7.1</span><span class="date">2026-11-19</span></div><div><h3>창을 다시 띄울 때 렉 없애기와 Resolve 와 같은 Log 영상 레벨</h3><ul><li>작업 표시줄에서 창을 다시 띄울 때 화면이 한동안 검게 남던 문제를 고쳤습니다. 이제 누르는 즉시 화면이 보입니다.</li><li>창을 최소화해 두면 영상 프레임 처리와 Resolve 상태 확인을 쉬어 GPU 와 CPU 를 덜 씁니다.</li><li>보기 메뉴의 &#x27;Log 영상 코드값 그대로&#x27; 를 켜면, Resolve 를 거치지 않고 연 Log 영상도 Resolve 에서 LUT 을 건 결과와 같은 밝기로 보입니다. 기본값은 예전과 같습니다.</li><li>Resolve 왕복 검증이 원본 크기에서 계산해, 질감이 많은 장면에서도 정확하게 판정합니다.</li><li>프로젝트를 내보내면 미디어 풀 목록도 함께 담기고, 가져오면 그대로 이어집니다. 프로젝트를 지우면 그 프로젝트의 미디어 풀 목록도 정리됩니다.</li><li>사용설명서를 v3.7.1 로 새로 만들었습니다 (메뉴바 · 프로젝트 · 프리뷰 해상도 · Log 영상 레벨).</li></ul></div></div><div class="rel"><div class="rel-head"><span class="ver">v3.7.0</span><span class="date">2026-11-19</span></div><div><h3>프로젝트 관리자 · 상단 메뉴바 · 프리뷰 해상도</h3><ul><li>DaVinci Resolve 처럼 프로젝트를 만들고 골라 열 수 있습니다. 프로젝트마다 그레이딩 · 히스토리 · Look Vault · 미디어 풀을 따로 저장합니다. 예전 작업은 &#x27;기본 프로젝트&#x27; 에 그대로 있습니다.</li><li>화면 맨 위에 파일 · 편집 · 보기 · 재생 · 컬러 · 작업 공간 · 도움말 메뉴가 생겼습니다. 키보드(F10, 방향키)로도 움직일 수 있고, 단축키가 메뉴 옆에 보입니다.</li><li>뷰포트 도구줄과 환경설정에서 프리뷰 해상도(Full · 1/2 · 1/4)를 고를 수 있습니다. 원본 영상과 내보내는 LUT 은 그대로 두고 화면 처리만 가볍게 해 4K 재생이 부드러워집니다.</li><li>패널의 글자 크기를 다섯 단계로 정리해 한눈에 읽기 쉬워졌습니다.</li></ul></div></div><div class="rel"><div class="rel-head"><span class="ver">v3.6.2</span><span class="date">2026-11-19</span></div><div><h3>더 가벼운 재생과 &#x27;준비 중&#x27; 설정 모두 열기</h3><ul><li>4K 영상을 재생할 때 화면이 끊기던 원인을 없앴습니다. 스코프가 GPU 를 기다리느라 멈추던 시간이 사라졌고, 영상 프레임이 바뀔 때만 다시 그려 GPU 부담이 크게 줄었습니다.</li><li>영상의 카메라 정보를 읽는 시간이 절반으로 줄었고, 같은 파일을 다시 열면 바로 읽습니다. 미디어 풀에 클립을 여러 개 넣을 때도 빨라졌습니다.</li><li>설정에서 &#x27;준비 중&#x27; 이던 일곱 가지가 모두 동작합니다: Resolve LUT 폴더 지정, 권장 보간 표기, 1D Shaper 기본값, 32bit 프레임버퍼, 컨택트 시트 해상도, 컨폼 핸들, QC 신호 범위.</li><li>Resolve 를 다시 켠 뒤 연결되지 않던 실전 테스트 단계의 원인을 좁혀 종료 절차를 고쳤습니다.</li></ul></div></div><div class="rel"><div class="rel-head"><span class="ver">v3.6.1</span><span class="date">2026-11-18</span></div><div><h3>Resolve 연동 화면을 Resolve 결과와 똑같이</h3><ul><li>Resolve 를 따라갈 때 CineMaster 화면이 Resolve 에서 LUT 를 건 결과와 같아지도록 원본 프레임을 Resolve 와 같은 레벨로 읽습니다. Log 클립은 코드값을 그대로 씁니다.</li><li>실제 Resolve 에서 같은 프레임으로 잰 차이가 ΔE 2.5 에서 0.24 로 줄었습니다. 2단계 규격 검사와 왕복 검증도 Resolve 스틸을 그대로 씁니다.</li><li>연동 설정 도우미가 Resolve 가 꺼져 있을 때, 켜져 있지만 Resolve 안의 스크립트 서버가 시작되지 못했을 때, 외부 스크립팅이 꺼져 있을 때를 나눠 해결 방법을 알려 드립니다.</li><li>1초마다 확인하는 연결 상태 요청이 색 관리 판단에 필요한 값만 보내 훨씬 가벼워졌습니다. 같은 XML 을 여러 번 가져와도 사본이 늘지 않습니다.</li></ul></div></div><div class="rel"><div class="rel-head"><span class="ver">v3.6.0</span><span class="date">2026-11-18</span></div><div><h3>DaVinci Resolve 라이브 연동과 새 미디어 탭</h3><ul><li>Resolve 컬러 페이지에서 고른 클립을 CineMaster 가 바로 따라옵니다. 그 클립의 원본 프레임과 카메라 정보를 불러오고, 클립마다 만든 룩을 따로 저장합니다.</li><li>만든 룩을 LUT 로 구워 그 클립의 지정한 노드 하나에만 보냅니다. Resolve 의 새 그레이드 버전에 넣어 원래 그레이드와 비교하거나 되돌릴 수 있습니다.</li><li>보내기 전에 방송 · OTT · 유튜브 · 극장 · 영화제 규격으로 검사하고, Resolve 에서 추가로 그레이딩한 결과와 렌더한 파일도 같은 규격으로 다시 검사합니다.</li><li>Resolve 프로젝트의 색 관리(YRGB · RCM · ACES)를 읽어 LUT 범위를 자동으로 고르고, 설정이 맞지 않으면 보내기 전에 해결 방법을 알려 드립니다.</li><li>MEDIA 페이지를 하나의 미디어 탭으로 다시 만들었습니다. PC 의 모든 드라이브를 트리로 둘러보고, 큰 썸네일 위에서 마우스를 움직여 영상을 훑어볼 수 있습니다.</li><li>ffprobe 와 ExifTool 로 카메라 · Log · ISO · 화이트밸런스 · 렌즈 · 타임코드를 읽어 카메라 프로파일을 자동으로 맞춥니다. 직접 바꾼 클립은 그대로 둡니다.</li><li>위쪽의 원본 · 레퍼런스 칸을 큰 썸네일과 큰 글자로 다시 꾸몄습니다.</li></ul></div></div><div class="rel"><div class="rel-head"><span class="ver">v3.5.1</span><span class="date">2026-11-18</span></div><div><h3>강한 그레이드용 음수 접기 옵션과 새 버전 알림</h3><ul><li>Look-Only와 Scene-Grade LUT에 음수 접기 옵션을 더했습니다. 강한 그레이드에서 하이라이트 색이 틀어지거나 밝기가 뒤집히는 것을 막습니다.</li><li>Master Bundle의 Master DI LUT에도 같은 옵션을 켤 수 있습니다. 두 옵션 모두 기본은 꺼져 있어 지금까지와 같은 결과가 나옵니다.</li><li>앱을 열 때 홈페이지에서 새 버전을 확인해 알림과 내려받기 링크를 보여 줍니다. 자동으로 설치하지 않고, 환경설정에서 끌 수 있으며, 인터넷이 없으면 조용히 넘어갑니다.</li><li>홈페이지를 새로 만들었습니다. 실제 엔진으로 렌더한 Log와 룩 비교, 실제 화면, 설치 파일 크기와 SHA-256, 페이지 안에서 바로 여는 웹 버전을 담았습니다.</li></ul></div></div><div class="rel"><div class="rel-head"><span class="ver">v3.5</span><span class="date">2026-11-18</span></div><div><h3>미디어 풀과 미디어 스토리지</h3><ul><li>DaVinci Resolve처럼 영상과 사진을 미디어 풀에 모아 두고 바로 꺼내 씁니다. 파일은 복사하지 않고 경로로 연결합니다.</li><li>미디어 스토리지에서 내 PC 드라이브, 구글 드라이브, OneDrive, 즐겨찾는 폴더를 썸네일로 둘러보고 여러 개나 폴더째 추가합니다.</li><li>빈, 검색, 정렬, 별점, 색 라벨로 정리하고, 더블클릭이나 우클릭, 끌어다 놓기로 원본, 레퍼런스, 컷 1~6에 넣습니다.</li><li>파일을 옮기면 Media Offline으로 표시하고, 폴더를 지정하면 같은 이름을 찾아 다시 연결합니다.</li><li>큰 원본 영상도 브라우저에 올리지 않고 서버가 디스크에서 바로 읽습니다.</li><li>작은 창에서 도구 줄과 마스터 바가 잘리거나 겹치던 문제를 고치고, 컨택트 시트를 컷 수에 맞춰 가운데 배치합니다.</li></ul></div></div><div class="rel"><div class="rel-head"><span class="ver">v3.4</span><span class="date">2026-11-17</span></div><div><h3>노드 그래프와 Power Window</h3><ul><li>색보정을 노드로 나눠 쌓습니다. 노드 패널은 큰 패널, 한 줄, 떠 있는 창 중에서 고릅니다.</li><li>Power Window로 화면 일부분만 보정합니다 (원형, 선형, 다각형, 방사형, HSL Qualifier).</li><li>컬러 휠, 커브, 스코프를 DaVinci Resolve와 같은 배치로 바꿨습니다. 스코프 새 창이 떨리던 문제도 고쳤습니다.</li><li>노드와 뷰어 단축키를 Resolve와 같은 키로 맞췄습니다.</li><li>환경설정 설명을 쉬운 존댓말로 다시 쓰고, Resolve 매칭 가이드를 그림으로 바꿨습니다.</li><li>노드 구조를 Resolve용 패키지(노드별 LUT과 매트)로 저장합니다.</li></ul></div></div><div class="rel"><div class="rel-head"><span class="ver">v3.3</span><span class="date">2026-11-17</span></div><div><h3>화면비와 현장 도구</h3><ul><li>화면비 19종, 프레임라인, 아나모픽 디스퀴즈를 뷰포트에서 바로 봅니다.</li><li>클린 피드와 스코프를 새 창으로 띄워 듀얼 모니터에서 씁니다.</li><li>MIDI 컨트롤러와 게임패드로 휠과 슬라이더를 움직입니다.</li><li>렌즈 캐릭터, 젤 필터, 현장용과 후반용 LUT 분리 저장을 더했습니다.</li></ul></div></div><div class="rel"><div class="rel-head"><span class="ver">v3.2</span><span class="date">2026-11-16</span></div><div><h3>Film Lab과 초보자 가이드</h3><ul><li>네거티브와 프린트 필름을 고르는 Film Lab, 현상과 프린터 라이트를 더했습니다.</li><li>카메라, 노출, 무드, 저장 4단계로 따라 하는 초보자 가이드 모드를 만들었습니다.</li><li>룩 16종을 내 영상 썸네일로 고르는 룩 브라우저와 환경설정을 더했습니다.</li></ul></div></div><div class="rel"><div class="rel-head"><span class="ver">v3.1</span></div><div><h3>출력 변환과 모니터링</h3><ul><li>Resolve의 CST처럼 출력 색공간과 감마를 따로 고릅니다.</li><li>스코프 위 커서 위치 표시, 모니터 메뉴, 와이프 방향, 즐겨찾기 핀을 더했습니다.</li></ul></div></div><div class="rel"><div class="rel-head"><span class="ver">v3.0</span></div><div><h3>다크 스튜디오 화면</h3><ul><li>화면 전체를 색보정실에 맞춘 어두운 화면으로 다시 만들었습니다.</li><li>예전 버전에서 저장한 파일을 자동으로 새 형식으로 올려 엽니다.</li></ul></div></div><div class="rel"><div class="rel-head"><span class="ver">v1.7</span></div><div><h3>Resolve 연동과 HDR</h3><ul><li>Resolve 타임라인의 모든 클립을 가져와 한 번에 LUT과 CDL을 거는 기능, HDR10, Dolby Vision, HLG 마스터링을 더했습니다.</li></ul></div></div><div class="rel"><div class="rel-head"><span class="ver">v1.6</span></div><div><h3>다섯 페이지 작업 화면</h3><ul><li>MEDIA, CONFORM, COLOR, FILM LAB, DELIVER 다섯 페이지로 작업 순서를 나눴습니다.</li></ul></div></div><div class="rel"><div class="rel-head"><span class="ver">v1.5</span></div><div><h3>후반 마무리 도구</h3><ul><li>타임라인 컨폼(XML, EDL), 카메라별 LUT 묶음, 외부 LUT 분석, 납품 검사, Resolve 직접 연결을 더했습니다.</li></ul></div></div><div class="rel"><div class="rel-head"><span class="ver">v1.4</span></div><div><h3>화면 배치와 False Color</h3><ul><li>칸 크기를 끌어서 바꾸고, False Color와 여러 컷을 한눈에 보는 컨택트 시트를 더했습니다.</li></ul></div></div><div class="rel"><div class="rel-head"><span class="ver">v1.3</span></div><div><h3>Look-Only LUT과 웹 버전</h3><ul><li>Look-Only LUT 내보내기와 설치 없이 쓰는 웹 버전을 처음 만들었습니다.</li></ul></div></div></details>
+        </div>
+      </div>
+
+      <div class="subpanel" id="faq" role="tabpanel" aria-labelledby="st-faq">
+    <div class="faq">
+      <details>
+        <summary>무료인가요?</summary>
+        <p>네. 이 페이지의 설치 파일과 웹 버전은 모두 무료로 받아 쓸 수 있습니다.</p>
+      </details>
+      <details>
+        <summary>웹 버전과 설치형은 무엇이 다른가요?</summary>
+        <p>색보정과 LUT 저장은 같은 수식이라 결과가 같습니다. Shot Match, Resolve 연동, 미디어 풀, HDR 납품처럼 PC 쪽 프로그램이 계산하는 기능은 설치형에만 있습니다. 다운로드 탭의 비교표를 참고하세요.</p>
+      </details>
+      <details>
+        <summary>내 영상이 어딘가로 올라가나요?</summary>
+        <p>아니요. 웹 버전은 내 브라우저 안에서, 설치형은 내 PC 안에서만 처리합니다. Gemini AI 분석을 직접 켰을 때만 분석할 스틸 한 장이 구글 서버로 전송됩니다.</p>
+      </details>
+      <details>
+        <summary>새 버전이 나온 것을 어떻게 알 수 있나요?</summary>
+        <p>설치형은 시작할 때 이 홈페이지의 최신 버전을 확인해, 새 버전이 있으면 화면에 알림과 내려받기 링크를 보여 줍니다. 자동으로 설치하지는 않습니다. 환경설정의 인터페이스 항목에서 끌 수 있고, 인터넷이 없으면 조용히 넘어갑니다.</p>
+      </details>
+      <details>
+        <summary>Mac 에서도 쓸 수 있나요?</summary>
+        <p>웹 버전은 Mac 의 Chrome 에서 열립니다. 설치형은 지금은 Windows 용만 배포합니다.</p>
+      </details>
+      <details>
+        <summary>Resolve 에서 LUT 색이 조금 다르게 보여요.</summary>
+        <p>Resolve 의 Project Settings → Color Management 에서 3D lookup table interpolation 을 Tetrahedral 로 바꿔 주세요. Full LUT 뒤에 CST 를 또 걸지 않았는지도 확인하세요. 설명서 Resolve 장에 그림으로 정리해 두었습니다.</p>
+      </details>
+      <details>
+        <summary>설치할 때 백신이나 SmartScreen 이 막아요.</summary>
+        <p>코드 서명 인증서가 없는 새 프로그램이라 나오는 경고입니다. 다운로드 탭의 설치 안내대로 실행하고, 걱정되면 파일 정보의 SHA-256 으로 받은 파일이 같은지 확인하세요.</p>
+      </details>
+    </div>
+      </div>
+
+  <section class="block wrap contact" id="contact" aria-labelledby="contact-h">
+    <h2 id="contact-h">문의</h2>
+    <p class="lede">버그, 사용법, 기능 제안은 메일로 보내 주세요. 쓰고 계신 버전(화면 왼쪽 위)과 무엇을 하다가 생겼는지 함께 적어 주시면 빨리 확인할 수 있습니다.</p>
+    <p><a class="mail" href="#contact" data-mail-user="466121qkrsna" data-mail-domain="moc.liamg">메일 주소 보기</a></p>
+    <script>(function(){var a=document.querySelector("[data-mail-user]");if(!a)return;var r=function(s){return s.split("").reverse().join("")};var m=r(a.getAttribute("data-mail-user"))+"@"+r(a.getAttribute("data-mail-domain"));a.textContent=m;a.href="mailto:"+m+"?subject="+encodeURIComponent("CineMaster AI 문의");})();</script>
+  </section>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div class="foot-main">
+      <p class="foot-line"><span><b>CineMaster AI</b> <span class="mono">v3.8.6</span></span><span>대표 KY</span><span>이메일 <span class="mail-text" data-mail-user="466121qkrsna" data-mail-domain="moc.liamg"></span></span></p>
+      <p class="foot-copy">Copyright © 2026 CineMaster AI. All rights reserved.</p>
+    </div>
+    <button class="to-top" type="button" data-top aria-label="맨 위로" title="맨 위로">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5.5 11.5L12 5l6.5 6.5"/></svg>
+    </button>
+  </div>
+</footer>
+
+<div class="toast" role="status" aria-live="polite" hidden></div>
+<script>window.CINEMASTER_SITE = {"version": "3.8.6", "label": "v3.8.6", "date": "2026-11-20", "installer": {"url": "https://github.com/CINEMASTER-AI/cinemaster-ai.github.io/releases/download/v3.8.6/CineMaster_AI_Setup_v3.8.6.exe", "size": "183.7 MB", "sha256": "f0ec01c01f0e4a2de8c3ba7a02b0a535ddc192f24e3ab47e4cf2b9b485b3d7a2"}, "portable": {"url": "https://github.com/CINEMASTER-AI/cinemaster-ai.github.io/releases/download/v3.8.6/CineMaster_AI_Portable_v3.8.6_Windows.zip", "size": "248.5 MB"}, "looks": [{"key": "Teal_Orange", "title": "Teal & Orange", "description": "섀도는 청록, 하이라이트·피부는 주황. 상업 영화의 대표적인 색 대비", "file": "img/hero/Teal_Orange.jpg", "file_960": "img/hero/Teal_Orange_960.jpg"}, {"key": "Warm_Print", "title": "Warm Print Film", "description": "따뜻한 하이라이트, 짙은 색, 살짝 뜬 블랙. 필름 프린트 느낌 + 할레이션·그레인", "file": "img/hero/Warm_Print.jpg", "file_960": "img/hero/Warm_Print_960.jpg"}, {"key": "Bleach_Bypass", "title": "Bleach Bypass", "description": "채도를 절반으로 빼고 콘트라스트를 강하게. 거칠고 차가운 느낌", "file": "img/hero/Bleach_Bypass.jpg", "file_960": "img/hero/Bleach_Bypass_960.jpg"}, {"key": "Moonlight", "title": "Moonlight (Day for Night)", "description": "낮 촬영을 밤처럼. 노출 −1.3, 푸른 톤, 낮은 채도", "file": "img/hero/Moonlight.jpg", "file_960": "img/hero/Moonlight_960.jpg"}, {"key": "Neutral_Rec709", "title": "Neutral Rec.709", "description": "룩 없음. Log 를 표준 Rec.709 로만 변환", "file": "img/hero/Neutral_Rec709.jpg", "file_960": "img/hero/Neutral_Rec709_960.jpg"}]};</script>
+<script src="site.js?v=3.8.6-fd9f7c52"></script>
+</body>
+</html>
