@@ -1,0 +1,30 @@
+{
+  "name": "CineMaster AI",
+  "version": "3.13.1",
+  "label": "v3.13.1",
+  "date": "2026-11-24",
+  "title": "작업 순서 길잡이 · 샘플 106종 · LUT 엔진 안정성",
+  "notes": [
+    "작업 순서 길잡이: 하단 독 왼쪽의 [길잡이]를 누르면 할 일을 순서대로 보여 줍니다. 단계마다 [여기로 가기]로 그 화면으로 옮겨 주고, 끝난 단계는 스스로 표시합니다. 목표는 LUT 만들기 · 레퍼런스처럼 맞추기 · Resolve로 보내기 세 가지입니다.",
+    "LUT FORGE의 샘플이 106종이 됐습니다. 카드에 톤 곡선과 암부 · 미드톤 · 명부의 대표 색이 바로 보이고, 이름만 다른 중복이 없도록 전부 서로 다른 룩으로 맞췄습니다.",
+    "LUT 정확도 측정: LUT FORGE의 검수 칸에서 33pt · 65pt의 격자 보간 오차(ΔE2000)를 재서 보여 줍니다.",
+    "극단적인 색에서 계산이 깨지던 경우 두 가지를 고쳤습니다(소프트 라이트 합성 뒤의 넘침, 톤매핑의 넘침). 보통의 그림에서는 결과가 같습니다.",
+    "국소 자동 보정이 약 2배, 여러 파일 묶음 저장이 약 1.8배 빨라졌습니다."
+  ],
+  "page": "https://cinemaster-ai.github.io/#download",
+  "changelog": "https://cinemaster-ai.github.io/#updates",
+  "installer": {
+    "name": "CineMaster_AI_Setup_v3.13.1.exe",
+    "url": "https://github.com/CINEMASTER-AI/cinemaster-ai.github.io/releases/download/v3.13.1/CineMaster_AI_Setup_v3.13.1.exe",
+    "size": "215.9 MB",
+    "size_bytes": 226429648,
+    "sha256": "ccc48cb2d7e08cae3f156d95548ed3479c3e9140454d5a20f67348d0fd2887ec"
+  },
+  "portable": {
+    "name": "CineMaster_AI_Portable_v3.13.1_Windows.zip",
+    "url": "https://github.com/CINEMASTER-AI/cinemaster-ai.github.io/releases/download/v3.13.1/CineMaster_AI_Portable_v3.13.1_Windows.zip",
+    "size": "292.4 MB",
+    "size_bytes": 306614933,
+    "sha256": "070bb29941fc6e000e9af92eaa3c6ce206995c607865df83d0bfcbedfd315523"
+  }
+}
