@@ -1,0 +1,37 @@
+{
+  "name": "CineMaster AI",
+  "version": "3.13.0",
+  "label": "v3.13",
+  "date": "2026-11-24",
+  "title": "05 LUT FORGE — 65pt LUT 제작 · 검수 · 변환",
+  "notes": [
+    "하단 독에 05 LUT FORGE 페이지가 생겼습니다(Shift+5). MASTER는 06이 됐습니다(Shift+6). 작업 고르기 맨 위의 'LUT 제작 스튜디오'로도 엽니다.",
+    "샘플 75종(필름 · 장르 · 광고 · 다큐 · 흑백 · 기술)을 레시피로 넣었습니다. 고르면 슬라이더 값으로 들어와 그대로 고칠 수 있고, 65pt로 굽습니다.",
+    "레퍼런스 매칭: 이미지 1 ~ 3장의 톤 · 색 성향을 슬라이더 값과 잔여 뉘앙스 격자로 옮깁니다. 명암 · 색상 · 채도 · 스플릿 토닝을 따로 조절합니다.",
+    "말로 만들기: '비 오는 밤의 누아르, 청록 암부, 피부 유지'처럼 적으면 기존 슬라이더 값으로 바꿉니다. 이 PC 안에서 읽고, '대비만 15% 낮게' 같은 상대 수정도 됩니다.",
+    "LUT 믹서 · Diff: 두 LUT을 전체 / 휘도만 / 색만, 밝기 대역별로 섞고, 차이(ΔE · 변위)를 보고, Delta LUT으로 뽑습니다.",
+    "필수 검수: 내보내기 전에 단조성 · 밴딩 · 색역 클리핑 · 스킨톤 · 무채색 축을 검수해 Health Score를 냅니다. 통과해야 출고가 열리고, 자동 보정은 결함 격자점 둘레만 다듬습니다.",
+    "묶음 출고: 출력 색공간 × 격자 크기(65 · 35 · 33 · 17pt) × 강도(100 · 75 · 50%)를 한 번에 저장합니다. 장비별 프리셋과 QC 보고서가 함께 나옵니다.",
+    "레시피 서명: 내보낸 .cube를 다시 열면 만든 때의 슬라이더를 그대로 되찾습니다.",
+    "스트레스 시뮬레이터: 노출 · 색온도 · 채도를 흔들어 LUT이 버티는지 화면에서 확인합니다. 내보내는 LUT은 달라지지 않습니다.",
+    "FILM LAB에 LUT에 담기는 색 변환과 담기지 않는 광학 질감을 나눠 표시했습니다. GRADE · FILM LAB에서 지금 룩을 LUT Forge로 보낼 수 있습니다.",
+    "스킨톤 축을 125.5°로 바꿨습니다. Skin-Tone Lock · Skin Hue Uniformity를 쓴 기존 룩은 결과가 조금 달라집니다.",
+    "재생 중 해상도 자동: 4K 영상을 재생하는 동안 처리 해상도를 화면 크기에 맞춰 낮춥니다. 멈추면 원래 해상도로 돌아옵니다(설정에서 끌 수 있습니다)."
+  ],
+  "page": "https://cinemaster-ai.github.io/#download",
+  "changelog": "https://cinemaster-ai.github.io/#updates",
+  "installer": {
+    "name": "CineMaster_AI_Setup_v3.13.exe",
+    "url": "https://github.com/CINEMASTER-AI/cinemaster-ai.github.io/releases/download/v3.13.0/CineMaster_AI_Setup_v3.13.exe",
+    "size": "215.9 MB",
+    "size_bytes": 226424092,
+    "sha256": "ec68ac21675dcdfdf61a427b581c8df2b330481d257c551d386f09af88732da5"
+  },
+  "portable": {
+    "name": "CineMaster_AI_Portable_v3.13_Windows.zip",
+    "url": "https://github.com/CINEMASTER-AI/cinemaster-ai.github.io/releases/download/v3.13.0/CineMaster_AI_Portable_v3.13_Windows.zip",
+    "size": "292.4 MB",
+    "size_bytes": 306600412,
+    "sha256": "0b5db3aea2bdb498e28c5685b0d77aacf5ac2cacb03661cc7edf44d7daa00836"
+  }
+}
