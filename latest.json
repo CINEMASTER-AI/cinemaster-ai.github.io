@@ -1,0 +1,35 @@
+{
+  "name": "CineMaster AI",
+  "version": "3.15.0",
+  "label": "v3.15",
+  "date": "2026-11-25",
+  "title": "편의성 — 되돌리기 · 이어서 작업 · 진행률",
+  "notes": [
+    "AUTO DI 적용 되돌리기: 적용 전에 Resolve 프로젝트를 .drp로 백업하고, 클립마다 새 그레이드 버전에만 LUT을 겁니다. [적용 되돌리기] 한 번으로 클립마다 적용 전 버전으로 돌아갑니다.",
+    "이어서 작업: 수집한 타임라인 · 장면 분석 · 손본 클립이 프로젝트마다 저장됩니다. 앱을 다시 켜도 그대로입니다.",
+    "분석 진행률: 타임라인 분석이 뒤에서 돌고 진행률과 [중지]가 보입니다. 중지해도 지금 타임라인은 그대로입니다.",
+    "장면 전체 고치기: AUTO DI 장면 묶음의 시간대 · 조명 · 렌즈 판단을 한 번에 고칩니다.",
+    "원본 재생: Resolve에서 수집한 클립은 타임라인 바의 [원본 재생]으로 원본 파일을 CineMaster 플레이어로 엽니다.",
+    "실행 취소가 클립마다 이어집니다. 다른 클립에 갔다 와도 Ctrl+Z가 그 클립에서 이어집니다.",
+    "[타임라인 수집]은 어디서 누르든 같은 동작입니다. 단축키 Shift+T(타임라인 바) · Shift+N(다음 단계) · Alt+R(레퍼런스 매칭).",
+    "길잡이 · 작업 고르기에 '타임라인 전체 적용 (AUTO DI)'.",
+    "앱을 열 때 작업 고르기 대신 사용 안내가 뜹니다. 작업 고르기는 메뉴 [작업 공간]에 그대로 있습니다.",
+    "앱 안에서 새 버전 설치: 설치형은 새 버전 알림의 [받아서 설치]로 받고, SHA-256을 확인한 뒤 설치 창을 엽니다."
+  ],
+  "page": "https://cinemaster-ai.github.io/#download",
+  "changelog": "https://cinemaster-ai.github.io/#updates",
+  "installer": {
+    "name": "CineMaster_AI_Setup_v3.15.exe",
+    "url": "https://github.com/CINEMASTER-AI/cinemaster-ai.github.io/releases/download/v3.15.0/CineMaster_AI_Setup_v3.15.exe",
+    "size": "216.9 MB",
+    "size_bytes": 227389317,
+    "sha256": "0dc5117c0a86f857a89dd9889e02b78dae726096e66025318b5b280b161fe6c7"
+  },
+  "portable": {
+    "name": "CineMaster_AI_Portable_v3.15_Windows.zip",
+    "url": "https://github.com/CINEMASTER-AI/cinemaster-ai.github.io/releases/download/v3.15.0/CineMaster_AI_Portable_v3.15_Windows.zip",
+    "size": "293.4 MB",
+    "size_bytes": 307627392,
+    "sha256": "6b708b5c869fac32d50a38c69e6e0f03183acc08c3340ef2a253bc4642840d1e"
+  }
+}
