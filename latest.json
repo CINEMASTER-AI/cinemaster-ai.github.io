@@ -1,0 +1,35 @@
+{
+  "name": "CineMaster AI",
+  "version": "3.15.1",
+  "label": "v3.15.1",
+  "date": "2026-11-25",
+  "title": "있는 기능 다듬기 — 검수 · 장면 판단 · 속도",
+  "notes": [
+    "AUTO DI 검수: 조명 보정(노출 · 화이트밸런스)을 뺀 기준으로 스킨톤 · 무채색을, 그 클립의 그림으로 색역 클리핑을 잽니다. 검사마다 감점이 보입니다.",
+    "AUTO DI 굽기: 격자가 접히면 필름 스톡 분기부터 덜어 내고 그 클립의 계획에도 남깁니다.",
+    "밤 장면: 푸른 달빛 · 청록 연출광도 절반 넘게 남깁니다.",
+    "장면 판단: 실내 · 실외를 하늘 · 가로등 · 해와 하늘빛으로 판단합니다. 카메라 4종 실제 촬영본 40컷에서 13 → 36컷. 청록 · 자주 연출광은 보정하지 않는 색 조명으로 읽습니다.",
+    "AUTO DI 분석 · 검수 · 클립별 LUT 굽기를 여러 스레드로 — 40컷 분석 10.3초 → 4.3초, 적용 묶음 5.8초 → 2.4초.",
+    "5노드 트리: AUTO DI 노출을 Node 02 CDL Offset으로 옮겨 노드에서 바로 다듬습니다. 룩 세기가 여러 노드의 룩 전체에 걸립니다.",
+    "레퍼런스 매칭: 컬러 레퍼런스를 흑백 룩으로 읽던 것을 고쳤습니다.",
+    "65pt LUT 저장이 작업 대기열로 — 엔진 상태에 진행률 · 취소.",
+    "ACES 출력: 롤오프 칸 흐리게, 피크 버튼 잠금, Resolve 노드 스크립트 · 바이블에 ACES 출력 변환 이름. Auto-Legalize는 ACES가 건너뛰는 값을 바꾸지 않습니다.",
+    "헤더 신호 흐름: 필름 스톡 이름이 있어도 펼친 채, 필름을 끄면 다시 펼칩니다."
+  ],
+  "page": "https://cinemaster-ai.github.io/#download",
+  "changelog": "https://cinemaster-ai.github.io/#updates",
+  "installer": {
+    "name": "CineMaster_AI_Setup_v3.15.1.exe",
+    "url": "https://github.com/CINEMASTER-AI/cinemaster-ai.github.io/releases/download/v3.15.1/CineMaster_AI_Setup_v3.15.1.exe",
+    "size": "216.9 MB",
+    "size_bytes": 227416644,
+    "sha256": "b813ff95f9fdb72fb44d4c9574f002ccdc56be63b18461ccf3f24b03d4cf11a3"
+  },
+  "portable": {
+    "name": "CineMaster_AI_Portable_v3.15.1_Windows.zip",
+    "url": "https://github.com/CINEMASTER-AI/cinemaster-ai.github.io/releases/download/v3.15.1/CineMaster_AI_Portable_v3.15.1_Windows.zip",
+    "size": "293.4 MB",
+    "size_bytes": 307645049,
+    "sha256": "e22fe3436eee7b134407147dd3b6800a02e7813540b75f8a9e4c69c05c77a956"
+  }
+}
