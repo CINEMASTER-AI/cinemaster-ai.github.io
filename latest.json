@@ -1,0 +1,28 @@
+{
+  "name": "CineMaster AI",
+  "version": "3.14.1",
+  "label": "v3.14.1",
+  "date": "2026-11-25",
+  "title": "AUTO DI 밤 장면 판단",
+  "notes": [
+    "AUTO DI의 장면 분석이 ISO를 올리지 않고 찍은 밤 장면(가로등 · 실용광으로 인물을 밝힌 야외, 푸른 달빛으로 연출한 세트)을 '주간'으로 읽던 것을 고쳤습니다. 화면 위쪽에 낮의 하늘 · 창빛이 있는가와 어두운 화면을 비추는 빛의 색(따뜻한 실용광 · 차가운 달빛)을 함께 봅니다.",
+    "실제 촬영본 60컷(밤 40 · 낮 20)으로 잰 결과: 밤 판단 28/40 → 40/40, 낮을 밤으로 잘못 읽은 컷은 1컷 그대로입니다. 밤으로 읽힌 클립은 '야간 · 조명 분위기 유지'가 걸려 대낮처럼 밝히거나 조명 색을 지우지 않습니다.",
+    "판단이 다를 때는 이전처럼 AUTO DI 카드의 시간대 태그를 눌러 고칠 수 있습니다."
+  ],
+  "page": "https://cinemaster-ai.github.io/#download",
+  "changelog": "https://cinemaster-ai.github.io/#updates",
+  "installer": {
+    "name": "CineMaster_AI_Setup_v3.14.1.exe",
+    "url": "https://github.com/CINEMASTER-AI/cinemaster-ai.github.io/releases/download/v3.14.1/CineMaster_AI_Setup_v3.14.1.exe",
+    "size": "216.8 MB",
+    "size_bytes": 227319261,
+    "sha256": "15e76805f0e6d7fb1d4c7d2d8e72d03e372e77b6d670a74f9e749e5011cd46ba"
+  },
+  "portable": {
+    "name": "CineMaster_AI_Portable_v3.14.1_Windows.zip",
+    "url": "https://github.com/CINEMASTER-AI/cinemaster-ai.github.io/releases/download/v3.14.1/CineMaster_AI_Portable_v3.14.1_Windows.zip",
+    "size": "293.3 MB",
+    "size_bytes": 307567800,
+    "sha256": "ca75641537c108562dc36889c7797ce6bcac8e3a39f2ea51a7be6fddaff2c0ca"
+  }
+}

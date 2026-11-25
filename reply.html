@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>피드백 답장 — CineMaster AI</title>
+<style>
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #060f12; color: #f6ecdc; font: 400 16px/1.7 "Pretendard", "Malgun Gothic", system-ui, sans-serif; }
+  main { width: min(560px, 92vw); padding: 28px; }
+  h1 { font-size: 22px; margin: 0 0 8px; }
+  p { color: #8fa9a8; margin: 0 0 14px; }
+  dl { margin: 0 0 20px; padding: 14px 16px; background: #0c1e22; border-radius: 6px; }
+  dt { color: #6f8b8a; font-size: 13px; } dd { margin: 0 0 8px; word-break: break-all; }
+  [hidden] { display: none !important; }
+  a.btn { display: inline-block; padding: 12px 20px; border-radius: 6px; background: #ff9440; color: #1b0f04; font-weight: 650; text-decoration: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>피드백에 답장하기</h1>
+  <p data-note>메일 프로그램이 열리지 않으면 아래 버튼을 눌러 주세요.</p>
+  <dl data-info hidden><dt>받는 사람</dt><dd data-to></dd><dt>피드백</dt><dd data-about></dd></dl>
+  <a class="btn" data-mail hidden>메일 쓰기</a>
+</main>
+<script>
+(function () {
+  // #뒤의 값(base64url 로 싼 JSON)을 읽는다 — 주소의 # 뒤는 서버로 전송되지 않으므로 받는 사람 주소가 접속 기록에 남지 않는다
+  var note = document.querySelector("[data-note]");
+  try {
+    var raw = location.hash.slice(1).replace(/-/g, "+").replace(/_/g, "/");
+    while (raw.length % 4) raw += "=";
+    var bytes = Uint8Array.from(atob(raw), function (c) { return c.charCodeAt(0); });
+    var d = JSON.parse(new TextDecoder("utf-8").decode(bytes));
+    if (!/^[^\s@<>"']+@[^\s@<>"']+\.[^\s@<>"']+$/.test(d.to || "")) throw new Error("to");
+    var kinds = { bug: "버그", idea: "기능 제안", question: "질문", other: "기타" };
+    var kind = kinds[d.kind] || "피드백";
+    var subject = "Re: CineMaster AI " + kind + (d.id ? " #" + d.id : "");
+    var body = "안녕하세요, CineMaster AI 입니다.\n보내 주신 " + kind + " 잘 받았습니다.\n\n\n\n— 보내 주신 내용 —\n" + (d.m || "") + (d.v ? "\n(버전 " + d.v + ")" : "");
+    var href = "mailto:" + encodeURIComponent(d.to).replace(/%40/g, "@") + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+    document.querySelector("[data-to]").textContent = d.to;
+    document.querySelector("[data-about]").textContent = kind + (d.id ? " #" + d.id : "") + (d.m ? " — " + d.m : "");
+    document.querySelector("[data-info]").hidden = false;
+    var a = document.querySelector("[data-mail]");
+    a.href = href; a.hidden = false;
+    history.replaceState(null, "", location.pathname);      // 받는 사람 주소를 주소창 · 방문 기록에 남기지 않는다
+    location.href = href;
+  } catch (e) {
+    note.textContent = "답장할 정보를 읽지 못했습니다. 디스코드 알림의 연락처로 직접 메일을 보내 주세요.";
+  }
+})();
+</script>
+</body>
+</html>
