@@ -1,0 +1,15 @@
+/* CineMaster AI 글꼴 (v3.8) — 앱에 함께 싣는다 (인터넷 없이도 같은 모양). 둘 다 SIL Open Font License 1.1 (같은 폴더의 LICENSE). */
+@font-face {
+  font-family: "Pretendard Variable";
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  src: url("./PretendardVariable.woff2") format("woff2-variations"), url("./PretendardVariable.woff2") format("woff2");
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+  src: url("./JetBrainsMono-latin.woff2") format("woff2-variations"), url("./JetBrainsMono-latin.woff2") format("woff2");
+}
