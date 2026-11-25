@@ -1,0 +1,29 @@
+{
+  "name": "CineMaster AI",
+  "version": "3.14.2",
+  "label": "v3.14.2",
+  "date": "2026-11-25",
+  "title": "화면 반응 최적화 — 클립이 많은 타임라인",
+  "notes": [
+    "단계를 바꿀 때마다 헤더가 화면 전체의 배치를 다시 계산하던 것을 고쳤습니다. 타임라인 클립 바 · AUTO DI 보드처럼 큰 화면에서 단계를 바꿀 때 생기던 짧은 멈춤이 줄었습니다.",
+    "타임라인 클립 바는 보이는 클립만 그립니다. 클립이 수백 개여도 STUDIO · MASTER로 넘어갈 때 멈추지 않고, 고른 클립 쪽으로 바가 옮겨 갑니다.",
+    "AUTO DI 보드는 화면 밖 카드의 배치 · 그리기를 건너뛰고, 썸네일을 화면을 막지 않고 풉니다.",
+    "실제 GPU에서 102클립 타임라인으로 잰 결과: AUTO DI 열기 2.2초 → 1.0초(50ms 넘는 멈춤 2번 → 0번), 단계 전환의 50ms 넘는 멈춤 2번 → 0 ~ 1번, LUT 포지 열기 1번 → 0번, AUTO DI 보드 스크롤의 프레임 간격 p95 12.1ms → 6.2ms."
+  ],
+  "page": "https://cinemaster-ai.github.io/#download",
+  "changelog": "https://cinemaster-ai.github.io/#updates",
+  "installer": {
+    "name": "CineMaster_AI_Setup_v3.14.2.exe",
+    "url": "https://github.com/CINEMASTER-AI/cinemaster-ai.github.io/releases/download/v3.14.2/CineMaster_AI_Setup_v3.14.2.exe",
+    "size": "216.8 MB",
+    "size_bytes": 227340522,
+    "sha256": "bb663b604ac619a80b1769a942e1be57a072167f3685ce2166229541f8a4c32a"
+  },
+  "portable": {
+    "name": "CineMaster_AI_Portable_v3.14.2_Windows.zip",
+    "url": "https://github.com/CINEMASTER-AI/cinemaster-ai.github.io/releases/download/v3.14.2/CineMaster_AI_Portable_v3.14.2_Windows.zip",
+    "size": "293.3 MB",
+    "size_bytes": 307568318,
+    "sha256": "e5d4c91025d5721d5b63bee5a7f7d51258f119d39107ef1c19450316052c1844"
+  }
+}
