@@ -1,0 +1,32 @@
+{
+  "name": "CineMaster AI",
+  "version": "3.14.0",
+  "label": "v3.14",
+  "date": "2026-11-25",
+  "title": "네 단계 워크플로우 · AUTO DI — 한 번 만든 LUT, 타임라인 전체로",
+  "notes": [
+    "하단 독이 네 단계가 됐습니다: MEDIA · STUDIO · AUTO DI · MASTER(Shift+1 ~ 4). 예전 여섯 페이지는 단계 안의 갈래로 그대로 있고, 탭을 길게 눌러 끌면 순서가 바뀝니다.",
+    "AUTO DI: STUDIO에서 만든 마스터 룩을 타임라인 전체에 적용합니다. 클립마다 시간대 · 조명 · 렌즈를 읽어 룩 앞의 노출 · 화이트밸런스 · ±Green · 피부 · 필름 분기를 따로 맞추고, 같은 장면의 클립은 결과를 모읍니다. 클립별 LUT을 구워 DaVinci Resolve 타임라인에 한 번에 걸거나 적용 묶음 ZIP으로 저장합니다. 손으로 고친 클립은 덮어쓰지 않습니다.",
+    "타임라인 클립 바: STUDIO · MASTER의 뷰어 아래에 수집한 클립이 보이고, 누르면 그 클립의 원본과 그레이드로 바뀝니다. 손으로 고친 클립은 번호 테두리가 앰버입니다. 데크 위 줄의 [타임라인] 버튼 · 보기 메뉴로 끄고 켭니다.",
+    "CONFORM의 [타임라인 전체 수집] 결과가 그대로 타임라인 바와 AUTO DI에 올라옵니다. Resolve를 다시 수집하지 않습니다.",
+    "통합 레퍼런스 매칭: STUDIO · LUT 포지의 [레퍼런스] 탭. 같은 장면이면 화소끼리, 다른 장면이면 피부 · 하늘 · 식물 · 무채색 영역끼리 맞추고 샘플 라이브러리로 룩을 인식합니다. 1:1 Shot Match · 톤 매칭은 같은 탭의 방식으로 남아 있습니다.",
+    "명령 찾기(Ctrl+K) 같은 큰 창을 열 때 오류가 나면 화면 전체가 검게 멈추던 것을 고쳤습니다. 그 창만 닫고 [다시 불러오기]를 안내합니다.",
+    "헤더 · 하단 독의 글자 겹침과 1600 ~ 1740px 창에서 그레이드 페이지의 위 줄이 넘치던 것을 고쳤습니다."
+  ],
+  "page": "https://cinemaster-ai.github.io/#download",
+  "changelog": "https://cinemaster-ai.github.io/#updates",
+  "installer": {
+    "name": "CineMaster_AI_Setup_v3.14.exe",
+    "url": "https://github.com/CINEMASTER-AI/cinemaster-ai.github.io/releases/download/v3.14.0/CineMaster_AI_Setup_v3.14.exe",
+    "size": "216.8 MB",
+    "size_bytes": 227332070,
+    "sha256": "84ea30020d238c09cf9e1924c2971f78fcf474e569440cab1b703ed2a2a50fba"
+  },
+  "portable": {
+    "name": "CineMaster_AI_Portable_v3.14_Windows.zip",
+    "url": "https://github.com/CINEMASTER-AI/cinemaster-ai.github.io/releases/download/v3.14.0/CineMaster_AI_Portable_v3.14_Windows.zip",
+    "size": "293.3 MB",
+    "size_bytes": 307566754,
+    "sha256": "7342e7a1173ce85815fdbb80b5048335907e9a83707ee1fc2740a32dd35c2729"
+  }
+}
